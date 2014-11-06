@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<!-- 開発モードスイッチ -->
+	<constant name="struts.devMode" value="true" />
+
+	<!-- アプリケーション共通プロパティファイル名。拡張子は不要。 -->
+	<constant name="struts.custom.i18n.resources" value="commons" />
+
+	<package name="lumi-default" abstract="true" extends="json-default">
+
+		<result-types>
+            <result-type name="thymeleaf" class="org.codework.struts.plugins.thymeleaf.ThymeleafResult"/>
+        </result-types>
+
+		<interceptors>
+			<interceptor-stack name="lumiStack">
+				<interceptor-ref name="exception" />
+				<interceptor-ref name="servletConfig" />
+				<interceptor-ref name="i18n" />
+				<interceptor-ref name="prepare" />
+				<interceptor-ref name="scopedModelDriven" />
+				<interceptor-ref name="modelDriven" />
+				<interceptor-ref name="fileUpload" />
+				<interceptor-ref name="checkbox" />
+				<interceptor-ref name="multiselect" />
+				<interceptor-ref name="actionMappingParams" />
+				<interceptor-ref name="params">
+					<param name="excludeParams">^action:.*,^method:.*</param>
+				</interceptor-ref>
+				<interceptor-ref name="conversionError" />
+				<interceptor-ref name="validation">
+					<param name="excludeMethods">input,back,cancel,browse</param>
+				</interceptor-ref>
+				<interceptor-ref name="jsonValidation" />
+				<interceptor-ref name="workflow">
+                    <param name="excludeMethods">input,back,cancel,browse</param>
+                </interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+
+	</package>
+</struts>

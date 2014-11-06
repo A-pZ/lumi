@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC
+        "-//Apache Struts//XWork Validator Definition 1.0//EN"
+        "http://struts.apache.org/dtds/xwork-validator-definition-1.0.dtd">
+
+<!-- 入力チェッククラスの定義。
+     Struts2ではこの定義ファイルにすべての入力チェックを記載できますが、Actionクラスごとの設定を強く推奨します。
+     ここでは作成したカスタムバリデータを並べていきます。
+ -->
+<validators>
+	<!-- lumi -->
+	<validator name="visitor"
+		class="lumi.validator.VisitorFieldValidator" />
+</validators>

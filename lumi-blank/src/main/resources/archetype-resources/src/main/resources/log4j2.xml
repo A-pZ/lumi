@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Configuration status="DEBUG">
+
+	<properties>
+		<Property name="filename">lumi3.log</Property>
+	</properties>
+
+	<filter>
+	</filter>
+
+	<Appenders>
+		<Console name="STDOUT" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+		</Console>
+
+		<File name="lumi" filename="${filename}">
+			<PatternLayout pattern="%C{1}.%M %m %ex%n"/>
+		</File>
+
+		<SMTP name="mail" subject="Log4j2 mail" to="azuma@NRSServer.local" from="errormail@NRSServer"
+		smtpHost="NRSServer" smtpPort="25" bufferSize="1" smtpUsername="azuma" smtpPassword="azuma">
+
+		</SMTP>
+	</Appenders>
+
+
+	<Loggers>
+		<!-- Struts2 -->
+		<Logger name="org.apache.struts2" level="info" additivity="false">
+			<appender-ref ref="STDOUT" />
+			<appender-ref ref="lumi" />
+		</Logger>
+		<!-- Struts2-webwork -->
+		<Logger name="com.opensymphony.xwork2" level="info" additivity="false">
+			<appender-ref ref="STDOUT" />
+			<appender-ref ref="lumi" />
+		</Logger>
+		<!-- Struts2-Convention -->
+		<Logger name="org.apache.struts2.convention" level="info" additivity="false">
+			<appender-ref ref="STDOUT" />
+			<appender-ref ref="lumi" />
+		</Logger>
+
+		<!-- Struts2-BeanSelectProvider -->
+		<Logger name="org.apache.struts2.config.AbstractBeanSelectionProvider" level="info" additivity="false">
+			<appender-ref ref="STDOUT" />
+			<appender-ref ref="lumi" />
+		</Logger>
+		<!-- Struts2-JBossFileManager -->
+		<Logger name="org.apache.struts2.util.fs.JBossFileManager" level="info" additivity="false">
+			<appender-ref ref="STDOUT" />
+			<appender-ref ref="lumi" />
+		</Logger>
+		<!-- Struts2-Components -->
+		<Logger name="org.apache.struts2.components" level="info" additivity="false">
+			<appender-ref ref="STDOUT" />
+			<appender-ref ref="lumi" />
+		</Logger>
+		<!-- Struts2-FreeMarker -->
+		<Logger name="freemarker" level="info" additivity="false">
+			<appender-ref ref="STDOUT" />
+			<appender-ref ref="lumi" />
+		</Logger>
+
+		<!-- Spring framework -->
+		<Logger name="org.springframework" level="info" additivity="false">
+			<appender-ref ref="STDOUT" />
+			<appender-ref ref="lumi" />
+		</Logger>
+		<!-- CGLib-AOP -->
+		<Logger name="org.springframework.aop.framework.CglibAopProxy" level="info" additivity="false">
+			<appender-ref ref="STDOUT" />
+			<appender-ref ref="lumi" />
+		</Logger>
+
+		<!-- org.apache.ibatis -->
+		<Logger name="org.apache.ibatis.logging" level="info" additivity="false">
+			<appender-ref ref="STDOUT" />
+			<appender-ref ref="lumi" />
+		</Logger>
+		<!-- org.mybatis.spring -->
+		<Logger name="org.mybatis.spring" level="info" additivity="false">
+			<appender-ref ref="STDOUT" />
+			<appender-ref ref="lumi" />
+		</Logger>
+
+		<Logger name="org.thymeleaf" level="info" additivity="false">
+			<appender-ref ref="STDOUT" />
+			<appender-ref ref="lumi" />
+		</Logger>
+
+		<!-- Lumi -->
+		<!-- ActionBeanGenerator -->
+		<Logger name="lumi.spring.Struts2ActionBeanNameGenerator" level="info" additivity="false">
+			<appender-ref ref="STDOUT" />
+			<appender-ref ref="lumi" />
+		</Logger>
+
+		<Root level="debug">
+			<appender-ref ref="STDOUT" level="debug"/>
+			<appender-ref ref="lumi" lebel="debug"/>
+			<appender-ref ref="mail" lebel="error"/>
+		</Root>
+	</Loggers>
+</Configuration>

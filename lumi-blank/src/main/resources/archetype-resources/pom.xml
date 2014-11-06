@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>${groupId}</groupId>
+  <artifactId>${artifactId}</artifactId>
+  <packaging>war</packaging>
+  <version>${version}</version>
+	<properties>
+		<java.version>1.7</java.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>serendip.lumi-core</groupId>
+			<artifactId>${archetypeArtifactId}</artifactId>
+			<version>${lumi.version}</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<encoding>UTF-8</encoding>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<name>lumi-blank</name>
+	<url>http://a-pz.jp/lumi</url>
+	<description>lumi - light unit and model intergration stacks.
+* Struts2 - Controller/ViewController
+* Spring3 - Model
+* Mybatis - DAO
+* AspectJ - Controller / Aspect
+* Log4j2 - Logging
+* thymeleaf - View
+* lombok
+
+lumi is based on CoC,Struts2-Convention , individual implement classes are annotation base configulation , common configulation was xml , that means application configulation is divide between Application behavior and Implementation.</description>
+</project>
