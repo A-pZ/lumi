@@ -23,4 +23,17 @@
 		)
 	</insert>
 
+	<!-- サンプル用の一覧検索結果 -->
+	<select id="sampleList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		SELECT
+			prodcode , prodname , size
+		FROM
+			SAMPLETBL
+		<where>
+			<if test="keyname != null">
+				prodcode = #{keyname}
+			</if>
+		</where>
+		ORDER BY prodcode
+	</select>
 </mapper>

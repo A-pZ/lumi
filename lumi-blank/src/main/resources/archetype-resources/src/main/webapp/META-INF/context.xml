@@ -12,13 +12,14 @@
   -->
 
   <!-- JDBC 接続プール。このname属性の値は、Springのtransacion.xmlから参照します。 -->
+  <!-- お使いの環境にあわせて *印の部分を修正してください。 -->
   <Resource name="jdbc/dbcon"
             auth="Container"
             type="javax.sql.DataSource"
-            username="username"
-            password="password"
-            driverClassName="set.your.JDBCDriver"
-            url="set:your://DBURL"
+            username="*username*"
+            password="*password*"
+            driverClassName="*set.your.JDBCDriver*"
+            url="*set:your://DBURL*"
             maxActive="10"
             maxIdle="5"/>
 </Context>

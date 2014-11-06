@@ -2,7 +2,7 @@
 <Configuration status="DEBUG">
 
 	<properties>
-		<Property name="filename">lumi3.log</Property>
+		<Property name="filename">lumi.log</Property>
 	</properties>
 
 	<filter>
@@ -16,11 +16,6 @@
 		<File name="lumi" filename="${filename}">
 			<PatternLayout pattern="%C{1}.%M %m %ex%n"/>
 		</File>
-
-		<SMTP name="mail" subject="Log4j2 mail" to="azuma@NRSServer.local" from="errormail@NRSServer"
-		smtpHost="NRSServer" smtpPort="25" bufferSize="1" smtpUsername="azuma" smtpPassword="azuma">
-
-		</SMTP>
 	</Appenders>
 
 
@@ -99,7 +94,6 @@
 		<Root level="debug">
 			<appender-ref ref="STDOUT" level="debug"/>
 			<appender-ref ref="lumi" lebel="debug"/>
-			<appender-ref ref="mail" lebel="error"/>
 		</Root>
 	</Loggers>
 </Configuration>

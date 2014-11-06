@@ -8,12 +8,13 @@
   <version>${version}</version>
 	<properties>
 		<java.version>1.7</java.version>
+		<lumi.version>3.0.0</lumi.version>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>serendip.lumi-core</groupId>
-			<artifactId>${archetypeArtifactId}</artifactId>
+			<artifactId>lumi-core</artifactId>
 			<version>${lumi.version}</version>
 		</dependency>
 	</dependencies>
@@ -41,5 +42,5 @@
 * thymeleaf - View
 * lombok
 
-lumi is based on CoC,Struts2-Convention , individual implement classes are annotation base configulation , common configulation was xml , that means application configulation is divide between Application behavior and Implementation.</description>
+'lumi' is based on CoC,Struts2-Convention , individual implement classes are annotation base configulation , common configulation was xml , that means application configulation split Application behavior and Implementation.</description>
 </project>

@@ -37,7 +37,7 @@ public class SampleService extends LumiService {
 
 		// 検索結果
 		List<Map<String,Object>> resultList =
-				dao.select(Query.masterDivisionList.name(), param);
+				dao.select(Query.sampleList.name(), param);
 
 		// 検索結果を返す。
 		return resultList;
@@ -55,6 +55,6 @@ public class SampleService extends LumiService {
 	 *
 	 */
 	public enum Query {
-		masterDivisionList ,
+		sampleList ,
 	}
 }

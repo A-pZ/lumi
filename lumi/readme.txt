@@ -69,3 +69,14 @@ lumiでは、それぞれのクラスやライブラリを使う上での学習�
 * lumi - すべてのプロジェクトの親プロジェクト
 * lumi-core - lumiの制御部ならびに親クラス・インタフェースの提供
 * lumi-blank - プロジェクト生成用のひな型プロジェクト
+
+次に、lumiをmvn installして、lumi-coreとlumi-blankをローカルのリポジトリへインストールします。
+
+インストール後、lumi-blankをテンプレートとして新しいプロジェクトを作成します。
+任意のディレクトリにて、mvn archetype:generateを実行します。
+※mvn archetype:generateは現在のEclipse mavenプラグイン(m2e)では実行できません。別途コマンドラインから実行します。
+コマントラインからmavenを実行するには、
+* JavaSDKとmavenのインストール
+* 環境変数にJavaSDKとmavenのパスを追加してください。
+この作業は1度のみです。
+

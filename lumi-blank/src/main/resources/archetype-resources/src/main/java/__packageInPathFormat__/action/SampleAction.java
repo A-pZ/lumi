@@ -46,6 +46,9 @@ public class SampleAction extends LumiActionSupport {
 		// Serviceクラスの呼び出し
 		// List<Map<String,Object>> resultList = service.execute("param");
 
+		// 画面上部に表示するテキスト
+		sample = "Actionを実行しました。";
+
 		// Result値。ActionSupportの定数値を返すか、別途定義した値を返すこと。
 		// この値は@Resultで指定したname値となる。
 		return SUCCESS;
@@ -61,4 +64,7 @@ public class SampleAction extends LumiActionSupport {
 
 	@Getter @Setter
 	private String sample;
+
+	@Getter @Setter
+	private List<Map<String,Object>> resultList;
 }
