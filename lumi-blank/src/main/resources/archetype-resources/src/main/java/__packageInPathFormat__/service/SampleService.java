@@ -12,6 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
 /**
  * Serviceクラスのサンプル。
  *
@@ -21,6 +25,11 @@ import org.springframework.stereotype.Service;
 @Scope("prototype")
 @Service
 @Slf4j
+@Transactional(
+	    propagation = Propagation.REQUIRED,
+	    isolation = Isolation.DEFAULT,
+	    readOnly = false,
+	    rollbackFor = { RuntimeException.class, Exception.class })
 public class SampleService extends LumiService {
 
 	/**
@@ -37,7 +46,7 @@ public class SampleService extends LumiService {
 
 		// 検索結果
 		List<Map<String,Object>> resultList =
-				dao.select(Query.sampleList.name(), param);
+				dao.select(Query.sampleList.name(), map);
 
 		// 検索結果を返す。
 		return resultList;
