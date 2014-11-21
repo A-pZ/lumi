@@ -43,12 +43,6 @@ public class ActionAdvise extends AbstractAdvise {
 	/**
 	 * Actionアノテーションで定義したメソッドの前処理を行う。
 	 *
-	 * ActionクラスがLumiActionSupportないしはそのサブクラスの場合は以下の処理を行う。 <ou> <li>
-	 * Screen属性のデシリアライズ</li> <li>ヘッダの設定</li> <li>システム時刻の設定</li> <li>
-	 * メニューボタン、他画面ボタンのデフォルト設定</li> <li>一覧表示の最大件数取得</li> <li>基底Serviceと共有する情報を格納</li>
-	 * <ou> <li>セッションMap</li> <li>Screen属性</li> <li>区分値一覧</li> <li>一覧の最大表示件数</li>
-	 * <li>ページング</li> </ou> </ou>
-	 *
 	 * @param joinPoint
 	 *            インターセプトした処理
 	 * @param annotation
@@ -56,7 +50,7 @@ public class ActionAdvise extends AbstractAdvise {
 	 * @throws Exception
 	 *             DI実行中の例外
 	 */
-	@Before("execution(public * lumi.action..*.*(..)) && @annotation(annotation)")
+	@Before("execution(public * *..action..*.*(..)) && @annotation(annotation)")
 	public void before(JoinPoint joinPoint, Action annotation) throws Exception {
 		log.info("ActionAdvise(before) : @Action(" + annotation.value() + ") :"
 				+ joinPoint.toLongString());
@@ -92,7 +86,7 @@ public class ActionAdvise extends AbstractAdvise {
 					log.debug("  -- set storeMap to service." + storeMap);
 				}
 			} else {
-				log.info("  -- service is null, skipped.");
+				log.info("  -- Action is not LumiActionSupport|subclass , skipped.");
 			}
 		}
 	}
@@ -116,20 +110,31 @@ public class ActionAdvise extends AbstractAdvise {
 		}
 
 		for (Field field:fields) {
+			// Actionのフィールドに@Autowiredがついているフィールドを取得する。
 			Annotation autowired = field.getAnnotation(Autowired.class);
 			if ( autowired != null ) {
 				if ( log.isDebugEnabled()) {
 					log.debug("find service-field: " + field.getName());
 				}
 
+				// PropertyDiscriptorを利用し、@Autowired対象のクラスを取得する。
 				PropertyDescriptor descriptor =
-						new PropertyDescriptor(field.getName() , LumiActionSupport.class);
+						new PropertyDescriptor(field.getName() , action.getClass());
 
+				// getterメソッドの取得
 				Method getter = descriptor.getReadMethod();
-				return (LumiService)getter.invoke(action, (Object[])null);
+
+				if ( getter != null ) {
+					// getterメソッドを実行し、LumiService継承のクラスを返す。
+					LumiService service = (LumiService)getter.invoke(action, (Object[])null);
+					if ( log.isDebugEnabled()) {
+						log.debug("  - service :" + service);
+					}
+					return service;
+				}
 			}
 		}
-
+		log.info("  -- no field , service is null.");
 		return null;
 	}
 
@@ -146,7 +151,7 @@ public class ActionAdvise extends AbstractAdvise {
 	 *             DI実行中の例外
 	 *
 	 */
-	@AfterThrowing(pointcut = "execution(public * lumi.action..*.*(..)) && @annotation(annotation)", throwing = "exception")
+	@AfterThrowing(pointcut = "execution(public * *..action..*.*(..)) && @annotation(annotation)", throwing = "exception")
 	public void afterThrowing(JoinPoint joinPoint, Action annotation,
 			Exception exception) throws Throwable {
 		log.warn("ActionAdvise(afterThrowing) : " + joinPoint.toLongString());
@@ -168,7 +173,7 @@ public class ActionAdvise extends AbstractAdvise {
 	 * @throws Throwable
 	 *             DI処理中に発生した例外
 	 */
-	@AfterReturning("execution(public * lumi.action..*.*(..)) && @annotation(annotation)")
+	@AfterReturning("execution(public * *..action..*.*(..)) && @annotation(annotation)")
 	public void afterReturning(JoinPoint joinPoint, Action annotation)
 			throws Throwable {
 		log.info("ActionAdvise(After ) : @Action(" + annotation.value() + ") :"
@@ -185,16 +190,23 @@ public class ActionAdvise extends AbstractAdvise {
 			// Actionへバインドする。
 			bindMessage(action);
 
-			// Screen属性のシリアライズ
-			action.setStoreMapValue(storeMapSerialize(action.getStoreMap()));
-
 			// 基底Serviceの取得
-			LumiService service = (LumiService) action.getService();
+			LumiService service = findServiceInstance(action);
 
 			if (service != null) {
 				// Screen属性をActionへ戻す。
 				Map<String, Object> storeMap = service.getStoreMap();
 				action.setStoreMap(storeMap);
+				if (log.isDebugEnabled()) {
+					log.debug("  -- get storeMap from service." + storeMap);
+				}
+			}
+
+			// Screen属性のシリアライズ
+			action.setStoreMapValue(storeMapSerialize(action.getStoreMap()));
+
+			if ( log.isDebugEnabled()) {
+				log.debug("  -- serialized." + action.getStoreMapValue());
 			}
 		}
 	}
@@ -226,14 +238,18 @@ public class ActionAdvise extends AbstractAdvise {
 		List<BridgeMessage> messages = service.getMessages();
 		if (messages != null) {
 			for (BridgeMessage message : messages) {
+				// ActionMessage
 				if (message.getLevel() == BridgeMessage.MessageLevel.INFO) {
 					action.addActionMessage(action.getText(
 							message.getMessageId(), message.getPlaceHolder()));
+				// ActionWarning
 				} else if (message.getLevel() == BridgeMessage.MessageLevel.WARN) {
 					action.addActionWarning(message.getWarning());
+				// ActionError
 				} else if (message.getLevel() == BridgeMessage.MessageLevel.ERROR) {
 					action.addActionError(action.getText(
 							message.getMessageId(), message.getPlaceHolder()));
+				// FieldError
 				} else if (message.getLevel() == BridgeMessage.MessageLevel.FIELD) {
 					action.addFieldError(
 							message.getFieldname(),
