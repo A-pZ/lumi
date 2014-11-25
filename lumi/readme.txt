@@ -69,6 +69,7 @@ lumiでは、それぞれのクラスやライブラリを使う上での学習�
 * lumi - すべてのプロジェクトの親プロジェクト
 * lumi-core - lumiの制御部ならびに親クラス・インタフェースの提供
 * lumi-blank - プロジェクト生成用のひな型プロジェクト
+* Struts2-thymeleaf-plugin - Struts2でThymeleafを使うためのプラグイン
 
 次に、lumiをmvn installして、lumi-coreとlumi-blankをローカルのリポジトリへインストールします。
 
@@ -79,4 +80,11 @@ lumiでは、それぞれのクラスやライブラリを使う上での学習�
 * JavaSDKとmavenのインストール
 * 環境変数にJavaSDKとmavenのパスを追加してください。
 この作業は1度のみです。
+
+
+□データベース接続について
+lumi-blankプロジェクトをインポート後、blank-generate.batでプロジェクトを生成します。
+生成したプロジェクトはmavenプロジェクトとなっているので、これをmavenプロジェクトとしてインポートします。
+
+次に、インポートしたプロジェクトのMETA-INF/context.xmlにて、JDBCの設定を修正してください。
 

@@ -218,13 +218,19 @@ public class ActionAdvise extends AbstractAdvise {
 	 *
 	 * @param action
 	 *            Actionクラスのインスタンス
+	 * @throws IntrospectionException
+	 * @throws SecurityException
+	 * @throws NoSuchMethodException
+	 * @throws InvocationTargetException
+	 * @throws IllegalArgumentException
+	 * @throws IllegalAccessException
 	 */
-	protected void bindMessage(LumiActionSupport action) {
+	protected void bindMessage(LumiActionSupport action) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, IntrospectionException {
 		if (log.isDebugEnabled()) {
 			log.debug(" -- bindMessage");
 		}
 
-		LumiService service = (LumiService) action.getService();
+		LumiService service =  findServiceInstance(action);
 
 		if (service == null) {
 			log.info("LumiService is null -> bind message is skip.");
