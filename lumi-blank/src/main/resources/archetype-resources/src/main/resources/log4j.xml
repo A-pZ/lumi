@@ -19,7 +19,7 @@
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern" value="[%-5p] [%d{yyyy/MM/dd HH:mm:ss.SSS}] [%C] - %m%n" />
 		</layout>
-	</appender> -->
+	</appender>
 
 	<logger name="org.apache.struts2" additivity="false">
 		<level value="info" />
