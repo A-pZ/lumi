@@ -16,7 +16,7 @@ import com.opensymphony.xwork2.ActionSupport;
 		  locations={"classpath:spring/applicationContext.xml",
 		             "classpath:spring/applicationContext-*.xml" })
 public class SampleActionTest extends
-		StrutsSpringJUnit4TestCase<SearchDisplayAction> {
+		StrutsSpringJUnit4TestCase<SampleAction> {
 
 	@Test
 	public void testStart() throws Exception {
