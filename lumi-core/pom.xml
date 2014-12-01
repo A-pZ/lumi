@@ -22,7 +22,6 @@
             <groupId>org.apache.struts</groupId>
             <artifactId>struts2-junit-plugin</artifactId>
             <version>${struts2.version}</version>
-            <scope>test</scope>
         </dependency>
 
         <dependency>
@@ -163,6 +162,12 @@
         	<groupId>org.slf4j</groupId>
         	<artifactId>slf4j-log4j12</artifactId>
         	<version>1.7.6</version>
+        </dependency>
+        <dependency>
+        	<groupId>org.apache.xbean</groupId>
+        	<artifactId>xbean-spring</artifactId>
+        	<version>3.13</version>
+        	<scope>test</scope>
         </dependency>
     </dependencies>
 

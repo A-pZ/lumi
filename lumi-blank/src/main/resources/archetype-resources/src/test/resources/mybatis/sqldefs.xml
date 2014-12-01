@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lumi">
+	<!-- 保管したScreen属性を読み取る -->
+	<select id="loadPersistStoreMap" parameterType="java.lang.String" resultType="java.lang.String">
+		SELECT
+			TRIM(STOREVAL)
+		FROM
+			SRPJAVALIB.STOREMAP
+		WHERE
+			TRIM(SEQ) = #{value}
+	</select>
+
+	<!-- Screen属性を保管する -->
+	<insert id="savePersistStoreMap" parameterType="java.util.HashMap">
+		INSERT INTO
+			STOREMAP
+		VALUES (
+			  #{SEQ}
+			, #{STOREMAP}
+		)
+	</insert>
+
+	<!-- サンプル用の一覧検索結果 -->
+	<select id="sampleList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		SELECT
+			prodcode , prodname , size
+		FROM
+			SAMPLETBL
+		<where>
+			<if test="keyname != null">
+				prodcode = #{keyname}
+			</if>
+		</where>
+		ORDER BY prodcode
+	</select>
+</mapper>

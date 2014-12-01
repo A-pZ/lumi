@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd"
+default-autowire="byName"
+>
+	<!-- Spring管理になるActionクラスの定義 -->
+	<!--
+		Actionクラスに対してBeanNameGeneratorを定義する理由としては、Struts2-Springプラグインは、ActionクラスのエイリアスをFQDNで管理し、
+		対してSpringは先頭小文字のクラス名で管理しているため、これに合致しません。
+		そのため、Springが管理するActionのエイリアスも簡単にクラス名へ変更しました。
+		A-pZ ( Serendipity 3 ./ as sundome goes by. )
+	 -->
+    <context:component-scan base-package="${package}.action" use-default-filters ="false"
+    name-generator="lumi.spring.Struts2ActionBeanNameGenerator">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
+</beans>

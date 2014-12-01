@@ -36,10 +36,11 @@ public class DAOAdvise extends AbstractAdvise {
 	/**
 	 * DAOメソッドの後処理にロジックを挟むこむ。
 	 * @param joinPoint 対象メソッド
+	 * @param retVal メソッドの戻り値
 	 * @throws Throwable 発生する例外
 	 */
-	@AfterReturning("execution(public * lumi.dao.DAOImpl.*(..))")
-	public void afterReturning(JoinPoint joinPoint) throws Throwable {
+	@AfterReturning(pointcut="execution(public * lumi.dao.DAOImpl.*(..))" , returning="retVal")
+	public void afterReturning(JoinPoint joinPoint , Object retVal) throws Throwable {
 		log.info("DAOAdvise(After ) : " + joinPoint.toLongString());
 		trace(joinPoint);
 

@@ -17,6 +17,12 @@
 			<artifactId>lumi-core</artifactId>
 			<version>${lumi.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.xbean</groupId>
+			<artifactId>xbean-spring</artifactId>
+			<version>3.13</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>

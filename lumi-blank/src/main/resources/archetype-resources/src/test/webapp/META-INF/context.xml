@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+  <!-- This context.xml affect Tomcat 6.0.35 later -->
+  <!--
+      Webアプリケーション設定を、WEB-INF以外に配置して、
+      開発時にコンテナを再起動することなく修正を反映させる倍兄は設定します。 -->
+  <!--
+  <Loader
+    className="org.apache.catalina.loader.VirtualWebappLoader"
+    virtualClasspath="/outer/configs"
+  />
+  -->
+
+  <!-- JDBC 接続プール。このname属性の値は、Springのtransacion.xmlから参照します。 -->
+  <!-- お使いの環境にあわせて *印の部分を修正してください。 -->
+  <Resource name="jdbc/dbcon"
+            auth="Container"
+            type="javax.sql.DataSource"
+            username="*username*"
+            password="*password*"
+            driverClassName="*set.your.JDBCDriver*"
+            url="*set:your://DBURL*"
+            maxActive="10"
+            maxIdle="5"/>
+</Context>

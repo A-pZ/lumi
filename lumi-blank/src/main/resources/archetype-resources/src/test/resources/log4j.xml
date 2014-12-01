@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<appender name="stdout" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out" />
+		<param name="threshold" value="debug"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%-5p] [%d{HH:mm:ss.SSS}] [%C] - %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="file" class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="lumi.log" />
+		<param name="Append" value="true" />
+		<param name="Encoding" value="utf-8" />
+		<param name="MaxFileSize" value="100KB" />
+		<param name="MaxBackupIndex" value="9" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%-5p] [%d{yyyy/MM/dd HH:mm:ss.SSS}] [%C] - %m%n" />
+		</layout>
+	</appender>
+
+	<logger name="org.apache.struts2" additivity="false">
+		<level value="info" />
+		<appender-ref ref="stdout" />
+		<appender-ref ref="file" />
+	</logger>
+
+	<logger name="com.opensymphony.xwork2" additivity="false">
+		<level value="info" />
+		<appender-ref ref="stdout" />
+	</logger>
+
+	<logger name="org.apache.struts2.convention" additivity="false">
+		<level value="info" />
+		<appender-ref ref="stdout" />
+		<appender-ref ref="file" />
+	</logger>
+
+	<!-- Struts2-BeanSelectProvider -->
+	<logger name="org.apache.struts2.config.AbstractBeanSelectionProvider"
+		additivity="false">
+		<level value="info" />
+		<appender-ref ref="stdout" />
+		<appender-ref ref="file" />
+	</logger>
+	<!-- Struts2-JBossFileManager -->
+	<logger name="org.apache.struts2.util.fs.JBossFileManager"
+		additivity="false">
+		<level value="warn" />
+		<appender-ref ref="stdout" />
+		<appender-ref ref="file" />
+	</logger>
+	<!-- Struts2-Components -->
+	<logger name="org.apache.struts2.components" additivity="false">
+		<level value="warn" />
+		<appender-ref ref="stdout" />
+		<appender-ref ref="file" />
+	</logger>
+	<!-- Struts2-FreeMarker -->
+	<logger name="freemarker" additivity="false">
+		<level value="warn" />
+		<appender-ref ref="stdout" />
+		<appender-ref ref="file" />
+	</logger>
+
+	<!-- Spring framework -->
+	<logger name="org.springframework" additivity="false">
+		<level value="info" />
+		<appender-ref ref="stdout" />
+		<appender-ref ref="file" />
+	</logger>
+	<!-- CGLib-AOP -->
+	<logger name="org.springframework.aop.framework.CglibAopProxy"
+		additivity="false">
+		<level value="info" />
+		<appender-ref ref="stdout" />
+		<appender-ref ref="file" />
+	</logger>
+
+	<!-- org.apache.ibatis -->
+	<logger name="org.apache.ibatis.logging"
+		additivity="false">
+		<level value="trace" />
+		<appender-ref ref="stdout" />
+		<appender-ref ref="file" />
+	</logger>
+	<!-- org.mybatis.spring -->
+	<logger name="org.mybatis.spring" additivity="false">
+		<level value="debug" />
+		<appender-ref ref="stdout" />
+		<appender-ref ref="file" />
+	</logger>
+
+	<logger name="org.thymeleaf" additivity="false">
+		<level value="debug" />
+		<appender-ref ref="stdout" />
+		<appender-ref ref="file" />
+	</logger>
+
+	<!-- Lumi -->
+	<!-- ActionBeanGenerator -->
+	<logger name="lumi.spring.Struts2ActionBeanNameGenerator" additivity="false">
+		<level value="debug" />
+		<appender-ref ref="stdout" />
+		<appender-ref ref="file" />
+	</logger>
+
+	<root>
+		<level value="debug" />
+		<appender-ref ref="stdout" />
+	</root>
+</log4j:configuration>

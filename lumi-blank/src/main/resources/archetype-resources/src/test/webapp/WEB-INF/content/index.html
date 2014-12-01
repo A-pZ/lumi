@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org" lang="ja">
+
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta>
+<meta charset="utf-8"></meta>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+<meta name="description" content=""></meta>
+<meta name="author" content=""></meta>
+
+<title>lumi sample index.</title>
+<link href="./css/bootstrap.min.css" rel="stylesheet"
+	th:href="@{/css/bootstrap.min.css}" />
+<link href="./css/bootstrap-theme.min.css" rel="stylesheet"
+	th:href="@{/css/bootstrap-theme.min.css}" />
+<link href="./css/custom.css" rel="stylesheet"
+	th:href="@{/css/custom.css}" />
+<script src="./js/jquery-1.11.1.min.js"
+	th:src="@{/js/jquery-1.11.1.min.js}"></script>
+<script src="./js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<script type="text/javascript" th:inline="javascript">
+/*<![CDATA[*/
+
+/*]]>*/
+</script>
+<style type="text/css">
+
+</style>
+<body role="document">
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container" th:replace="templates/header :: header">
+			<!-- この中身はtemplates/headerのheaderスニペットに切り替わる -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Bootstrap theme</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">Home</a></li>
+					<li><a href="#about">About</a></li>
+					<li><a href="#contact">Contact</a></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#">Action</a></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else here</a></li>
+							<li class="divider"></li>
+							<li class="dropdown-header">Nav header</li>
+							<li><a href="#">Separated link</a></li>
+							<li><a href="#">One more separated link</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<!--/.nav-collapse -->
+		</div>
+	</div>
+
+	<div class="container theme-showcase" role="main">
+		<div class="page-header">
+			<h2 th:text="${action.sample}">This message is only seen during
+				prototyping.</h2>
+		</div>
+
+		<table class="table table-border">
+			<thead>
+				<tr>
+					<th>製品コード(prodcode)</th>
+					<th>製品名(prodname)</th>
+					<th>サイズ(size)</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="data : ${action.resultList}">
+					<td th:text="${data.prodcode}">prodcode</td>
+					<td th:text="${data.prodname}">prodname</td>
+					<td th:text="${data.size}">size</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+</body>
+
+</html>
