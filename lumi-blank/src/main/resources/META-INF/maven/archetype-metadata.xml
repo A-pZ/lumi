@@ -36,5 +36,11 @@
         <include>**/*.*</include>
       </includes>
     </fileSet>
+    <fileSet filtered="false" encoding="UTF-8">
+      <directory>src/test/webapp</directory>
+      <includes>
+        <include>WEB-INF/content/**/*.*</include>
+      </includes>
+    </fileSet>
   </fileSets>
 </archetype-descriptor>
