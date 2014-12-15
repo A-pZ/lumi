@@ -43,16 +43,6 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-        	<groupId>com.jgeppert.struts2.jquery</groupId>
-        	<artifactId>struts2-jquery-plugin</artifactId>
-        	<version>${struts2-jquery.version}</version>
-        </dependency>
-        <dependency>
-        	<groupId>com.jgeppert.struts2.bootstrap</groupId>
-        	<artifactId>struts2-bootstrap-plugin</artifactId>
-        	<version>${struts2-bootstrap.version}</version>
-        </dependency>
-        <dependency>
         	<groupId>org.apache.struts</groupId>
         	<artifactId>struts2-spring-plugin</artifactId>
         	<version>${struts2.version}</version>
@@ -111,11 +101,6 @@
         	<groupId>org.mybatis</groupId>
         	<artifactId>mybatis-spring</artifactId>
         	<version>${mybatis-spring.version}</version>
-        </dependency>
-        <dependency>
-        	<groupId>cglib</groupId>
-        	<artifactId>cglib</artifactId>
-        	<version>${cglib.version}</version>
         </dependency>
         <dependency>
         	<groupId>org.projectlombok</groupId>
