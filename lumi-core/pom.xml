@@ -124,16 +124,6 @@
         	<version>${struts2.version}</version>
         </dependency>
         <dependency>
-        	<groupId>javax.mail</groupId>
-        	<artifactId>javax.mail-api</artifactId>
-        	<version>${javax.mail-api.version}</version>
-        </dependency>
-        <dependency>
-        	<groupId>javax.mail</groupId>
-        	<artifactId>mail</artifactId>
-        	<version>${mail.version}</version>
-        </dependency>
-        <dependency>
         	<groupId>javax.servlet</groupId>
         	<artifactId>javax.servlet-api</artifactId>
         	<version>3.0.1</version>
@@ -141,12 +131,12 @@
         <dependency>
         	<groupId>org.slf4j</groupId>
         	<artifactId>slf4j-api</artifactId>
-        	<version>1.7.6</version>
+        	<version>${slf4j.version}</version>
         </dependency>
         <dependency>
         	<groupId>org.slf4j</groupId>
         	<artifactId>slf4j-log4j12</artifactId>
-        	<version>1.7.6</version>
+        	<version>${slf4j.version}</version>
         </dependency>
         <dependency>
         	<groupId>org.apache.xbean</groupId>
