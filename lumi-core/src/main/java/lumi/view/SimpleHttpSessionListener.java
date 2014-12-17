@@ -5,21 +5,21 @@ package lumi.view;
 
 import java.util.Enumeration;
 
+import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * セッションの生成/破棄のリスナー。
  * @author A-pZ ( Serendipity 3 ./ as sundome goes by. )
  *
  */
+@Slf4j
+@WebListener
 public class SimpleHttpSessionListener implements HttpSessionListener {
-
-	private static final Logger log = LoggerFactory.getLogger(SimpleHttpSessionListener.class);
 
 	/* (非 Javadoc)
 	 * @see javax.servlet.http.HttpSessionListener#sessionCreated(javax.servlet.http.HttpSessionEvent)

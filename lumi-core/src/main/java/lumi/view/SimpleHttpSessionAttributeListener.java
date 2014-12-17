@@ -3,6 +3,7 @@
  */
 package lumi.view;
 
+import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpSessionAttributeListener;
 import javax.servlet.http.HttpSessionBindingEvent;
 
@@ -14,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
  *
  */
 @Slf4j
+@WebListener
 public class SimpleHttpSessionAttributeListener implements
 		HttpSessionAttributeListener {
 
