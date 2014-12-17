@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
 /**
@@ -66,5 +67,10 @@ public class DAOImpl extends SqlSessionDaoSupport implements DAO {
 	@Override
 	public <T> Object selectObject(String queryString, Object object) {
 		return getSqlSession().selectOne(queryString, object);
+	}
+
+	@Override
+	public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
+		super.setSqlSessionFactory(sqlSessionFactory);
 	}
 }
