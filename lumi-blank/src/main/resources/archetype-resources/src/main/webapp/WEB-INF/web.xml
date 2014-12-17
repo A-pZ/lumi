@@ -43,13 +43,4 @@
 	<listener>
 		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
 	</listener>
-	<listener>
-		<listener-class>lumi.view.SimpleHttpSessionAttributeListener</listener-class>
-	</listener>
-	<listener>
-		<listener-class>lumi.view.SimpleHttpSessionBindingListener</listener-class>
-	</listener>
-	<listener>
-		<listener-class>lumi.view.SimpleHttpSessionListener</listener-class>
-	</listener>
 </web-app>
