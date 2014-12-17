@@ -12,7 +12,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lumi.service.IService;
 import lumi.view.LumiValidationAwareSupport;
-import lumi.vo.Warning;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.interceptor.annotations.Blocked;
@@ -27,7 +26,7 @@ public class LumiActionSupport extends ActionSupport implements LumiAction {
      * ワーニング情報をセットする。
      * @param warningMessages ワーニングメッセージのCollection
      */
-    public void setActionWarnings(Collection<Warning> warningMessages) {
+    public void setActionWarnings(Collection<String> warningMessages) {
         validationAware.setActionWarnings(warningMessages);
     }
 
@@ -35,7 +34,7 @@ public class LumiActionSupport extends ActionSupport implements LumiAction {
      * ワーニング情報を追加する。
      * @param anWarningMessage ワーニングメッセージ
      */
-    public void addActionWarning(Warning anWarning) {
+    public void addActionWarning(String anWarning) {
         validationAware.addActionWarning(anWarning);
     }
 
@@ -43,7 +42,7 @@ public class LumiActionSupport extends ActionSupport implements LumiAction {
      * ワーニング情報のCollectionを取得する。
      * @return ワーニング情報のCollection
      */
-    public Collection<Warning> getActionWarnings() {
+    public Collection<String> getActionWarnings() {
         return validationAware.getActionWarnings();
     }
 

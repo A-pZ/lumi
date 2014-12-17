@@ -91,11 +91,12 @@ public class BridgeMessageFactory {
 
 	/**
 	 * ワーニングを設定する。
-	 *
+	 * @deprecated
 	 * @param messageId
 	 *            ワーニングID
 	 * @return
 	 */
+	@Deprecated
 	public static BridgeMessage getWarning(Warning warn) {
 		BridgeMessage instance = new BridgeMessage();
 		instance.setLevel(BridgeMessage.MessageLevel.WARN);

@@ -10,8 +10,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import lumi.vo.Warning;
-
 import com.opensymphony.xwork2.ValidationAware;
 
 /**
@@ -21,17 +19,17 @@ import com.opensymphony.xwork2.ValidationAware;
  *
  */
 public class LumiValidationAwareSupport implements ValidationAware, Serializable {
-    private Collection<Warning> actionWarnings;
+    private Collection<String> actionWarnings;
 
-    public synchronized void setActionWarnings(Collection<Warning> errorMessages) {
+    public synchronized void setActionWarnings(Collection<String> errorMessages) {
         this.actionWarnings = errorMessages;
     }
 
-    public synchronized Collection<Warning> getActionWarnings() {
-        return new ArrayList<Warning>(internalGetActionWarnings());
+    public synchronized Collection<String> getActionWarnings() {
+        return new ArrayList<String>(internalGetActionWarnings());
     }
 
-    public synchronized void addActionWarning(Warning anWarningMessage) {
+    public synchronized void addActionWarning(String anWarningMessage) {
         internalGetActionWarnings().add(anWarningMessage);
     }
 
@@ -43,9 +41,9 @@ public class LumiValidationAwareSupport implements ValidationAware, Serializable
         internalGetActionWarnings().clear();
     }
 
-    private Collection<Warning> internalGetActionWarnings() {
+    private Collection<String> internalGetActionWarnings() {
         if (actionWarnings == null) {
-            actionWarnings = new ArrayList<Warning>();
+            actionWarnings = new ArrayList<String>();
         }
         return actionWarnings;
     }

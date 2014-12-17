@@ -43,6 +43,7 @@ public class BridgeMessage {
     /**
      * ワーニング情報。
      */
+    @Deprecated
     @Getter @Setter
     private Warning warning;
 

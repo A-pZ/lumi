@@ -250,7 +250,8 @@ public class ActionAdvise extends AbstractAdvise {
 							message.getMessageId(), message.getPlaceHolder()));
 				// ActionWarning
 				} else if (message.getLevel() == BridgeMessage.MessageLevel.WARN) {
-					action.addActionWarning(message.getWarning());
+					action.addActionWarning(action.getText(
+							message.getMessageId(), message.getPlaceHolder()));
 				// ActionError
 				} else if (message.getLevel() == BridgeMessage.MessageLevel.ERROR) {
 					action.addActionError(action.getText(

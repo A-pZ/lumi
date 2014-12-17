@@ -13,6 +13,7 @@ import lombok.Data;
  * @author A-pZ ( Serendipity 3 ./ as sundome goes by. )
  *
  */
+@Deprecated
 @Data
 public class Warning {
 	/** ワーニングID */
