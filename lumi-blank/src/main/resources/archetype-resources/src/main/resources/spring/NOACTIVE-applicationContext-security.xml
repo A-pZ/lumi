@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans
+  xmlns:sec="http://www.springframework.org/schema/security"
+  xmlns:beans="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+  http://www.springframework.org/schema/security
+  http://www.springframework.org/schema/security/spring-security.xsd">
+
+  <!-- HTTP-Securityの設定
+  auto-configをtrueにすることでデフォルト設定が有効になり、記述量を削減できる -->
+  <sec:http auto-config='true'>
+	<sec:csrf/>
+	<sec:intercept-url pattern="/login*" access="permitAll"/>
+    <sec:intercept-url pattern="/css/**" access="permitAll" />
+    <sec:intercept-url pattern="/fonts/**" access="permitAll"/>
+    <sec:intercept-url pattern="/images/**" access="permitAll"/>
+    <sec:intercept-url pattern="/js/**" access="permitAll"/>
+    <sec:intercept-url pattern="/templates/**" access="permitAll"/>
+    <sec:intercept-url pattern="/struts/**" access="permitAll"/>
+	<sec:intercept-url pattern="/*" access="hasRole('ROLE_ADMIN')" />
+
+    <!-- FORM認証の振る舞い -->
+    <sec:form-login login-page="/login.action"
+    			login-processing-url="/j_spring_security_check"
+    			username-parameter="j_username"
+    			password-parameter="j_password"
+    			authentication-success-handler-ref="ipCheckSuccessHandler"
+                authentication-failure-url="/loginFailure.action" />
+
+    <!-- ログアウト時の振る舞い -->
+    <sec:logout logout-url="/logout"
+            logout-success-url="/logout.action"
+            invalidate-session="true" />
+  </sec:http>
+
+  <!-- 認証管理 -->
+  <sec:authentication-manager alias="authManager">
+    <sec:authentication-provider>
+      <sec:jdbc-user-service data-source-ref="dataSource"
+        users-by-username-query="
+         SELECT
+         	  USERNAME
+         	, PASSWORD
+         	, CASE
+         		ACTIVATE_FLAG
+         	  WHEN
+         	    '1' THEN 'false'
+         	  ELSE
+         	    'true'
+         	  END 			as ENABLED
+         FROM
+         	USERTABLE
+         AND
+         	USERNAME = ?"
+         authorities-by-username-query="
+         SELECT USERNAME , 'ROLE_ADMIN' as AUTHORITY FROM USERTABLE WHERE USERNAME = ?
+         "
+      />
+    </sec:authentication-provider>
+  </sec:authentication-manager>
+  <beans:bean  id="ipCheckSuccessHandler"
+		class="service.auth.IPAddressCheckHandler">
+		<beans:property  name="redirectUrl" value="/" />
+		<beans:property  name="alwaysUseDefaultTargetUrl" value="true" />
+		<beans:property  name="defaultTargetUrl" value="/" />
+  </beans:bean>
+
+  <beans:bean id="sessionRegistry" class="org.springframework.security.core.session.SessionRegistryImpl" />
+</beans:beans>
