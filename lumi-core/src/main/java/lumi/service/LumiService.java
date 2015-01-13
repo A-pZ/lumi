@@ -79,6 +79,29 @@ public class LumiService implements IService {
 	}
 
 	/**
+	 * WARNレベルのメッセージを追加する。
+	 * @param messageId メッセージプロパティに定義しているメッセージID
+	 */
+	public void addWarnMessage(String messageId) {
+		BridgeMessage message =
+		        BridgeMessageFactory.getMessage(BridgeMessage.MessageLevel.WARN, messageId, null);
+
+		addMessage(message);
+	}
+
+	/**
+	 * WARNレベルのメッセージを追加する。動的メッセージ部分はplaceHolder部分で定義する。
+	 * @param messageId メッセージプロパティに定義しているメッセージID
+	 * @param placeHolder 動的メッセージ部分。List<String>型ないしはString型
+	 */
+	public <T> void addWarnMessage(String messageId , Thread placeHolder) {
+		BridgeMessage message =
+		        BridgeMessageFactory.getMessage(BridgeMessage.MessageLevel.WARN, messageId, placeHolder);
+
+		addMessage(message);
+	}
+
+	/**
 	 * ワーニングダイアログの情報を格納する。
 	 * ワーニング情報は{@link Warning}を参照。
 	 * @param warn ワーニング情報。
