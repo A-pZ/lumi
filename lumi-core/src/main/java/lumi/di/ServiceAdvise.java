@@ -3,6 +3,9 @@
  */
 package lumi.di;
 
+import java.util.Arrays;
+import java.util.List;
+
 import lombok.extern.slf4j.Slf4j;
 
 import org.aspectj.lang.JoinPoint;
@@ -26,8 +29,10 @@ public class ServiceAdvise extends AbstractAdvise {
 	 */
 	@Before("execution(public * lumi.service..*.*(..))")
 	public void before(JoinPoint joinPoint) throws Exception {
-		log.info("ServiceAdvise(before) : " + joinPoint.toLongString());
-		trace(joinPoint);
+		if (!logIgnore(joinPoint)) {
+			log.info("ServiceAdvise(before) : " + joinPoint.toLongString());
+			trace(joinPoint);
+		}
 	}
 
 	/**
@@ -37,7 +42,24 @@ public class ServiceAdvise extends AbstractAdvise {
 	 */
 	@AfterReturning("execution(public * lumi.service..*.*(..))")
 	public void afterReturning(JoinPoint joinPoint) throws Throwable {
-		log.info("ServiceAdvise(After ) : " + joinPoint.toLongString());
-		trace(joinPoint);
+		if (!logIgnore(joinPoint)) {
+			log.info("ServiceAdvise(After ) : " + joinPoint.toLongString());
+			trace(joinPoint);
+		}
 	}
+
+	/**
+	 * ログ出力をスキップするメソッドであるかを判定する。
+	 * @param joinPoint JoinPoint
+	 * @return set/getで始まるメソッド名の場合はtrue
+	 */
+	protected boolean logIgnore(JoinPoint joinPoint) {
+		String name = joinPoint.getSignature().getName().substring(0,PREFIX_LENGTH);
+
+		return IGNORE_METHOD_NAME_STRINGS.contains(name);
+	}
+
+	/** 無視するメソッド名の接頭辞 */
+	public final static List<String> IGNORE_METHOD_NAME_STRINGS = Arrays.asList("set","get");
+	public final static int PREFIX_LENGTH = 3;
 }
