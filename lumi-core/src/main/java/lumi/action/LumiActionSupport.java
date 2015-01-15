@@ -58,7 +58,7 @@ public class LumiActionSupport extends ActionSupport implements LumiAction {
 	 */
 	@Blocked
 	@Setter
-	private HttpServletRequest servletRequest;
+	HttpServletRequest servletRequest;
 
 	/**
 	 * HttpSessionのMap表現。
