@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="ja">
+
+	<body>
+		<div class="messages" th:fragment="messages" id="messages">
+			<div class="alert alert-success" role="alert" th:inline="text" th:if="${not #lists.isEmpty(action.actionMessages)}">
+			[[${action.actionMessages[0]}]]
+			</div>
+			<div class="alert alert-warning" role="alert" th:inline="text" th:if="${not #lists.isEmpty(action.actionWarnings)}">
+			[[${action.actionWarnings[0]}]]
+			</div>
+			<div class="alert alert-danger" role="alert" th:inline="text" th:if="${not #lists.isEmpty(action.actionErrors)}">
+			[[${action.actionErrors[0]}]]
+			</div>
+		</div>
+	</body>
+</html>
