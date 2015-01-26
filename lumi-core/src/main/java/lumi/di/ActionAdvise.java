@@ -9,8 +9,12 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.security.Principal;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import lombok.extern.slf4j.Slf4j;
 import lumi.action.LumiActionSupport;
@@ -85,6 +89,18 @@ public class ActionAdvise extends AbstractAdvise {
 				if (log.isDebugEnabled()) {
 					log.debug("  -- set storeMap to service." + storeMap);
 				}
+				// セッション固有の情報をServiceクラスと共有する
+				HttpServletRequest request = action.getServletRequest();
+				HttpSession session = request.getSession(false);
+				if (session != null) {
+					service.setSessionId(session.getId());
+				}
+				// ログイン情報(ユーザID)をServiceクラスと共有する
+				Principal principal = request.getUserPrincipal();
+				if (principal != null) {
+					service.setUserId(principal.getName());
+				}
+
 			} else {
 				log.info("  -- Action is not LumiActionSupport|subclass , skipped.");
 			}

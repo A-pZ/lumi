@@ -164,8 +164,14 @@ public class LumiService implements IService {
 	}
 
 	/** セッションID。Actionクラスから格納される。 */
-	@Setter
+	@Setter @Getter
 	private String sessionId;
+
+	/**
+	 * ユーザID。Actionクラスから格納される。
+	 */
+	@Setter @Getter
+	private String userId;
 
 	/** Actionクラスと共有しているセッション情報のMap */
 	@Getter @Setter

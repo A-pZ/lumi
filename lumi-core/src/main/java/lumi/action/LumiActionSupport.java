@@ -57,7 +57,7 @@ public class LumiActionSupport extends ActionSupport implements LumiAction {
 	 * {@see ServletRequestAware}
 	 */
 	@Blocked
-	@Setter
+	@Setter @Getter
 	HttpServletRequest servletRequest;
 
 	/**
@@ -88,4 +88,7 @@ public class LumiActionSupport extends ActionSupport implements LumiAction {
 
 	@Getter @Setter
 	private String storeMapValue;
+
+	@Getter @Setter
+	private String _csrf;
 }

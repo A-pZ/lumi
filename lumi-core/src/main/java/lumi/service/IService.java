@@ -18,6 +18,12 @@ public interface IService {
      */
     public void setSessionId(String sessionId);
 
+    /**
+     * ログインしたユーザIDを格納する。
+     * @param userId HTTPセッションに格納したユーザID。
+     */
+    public void setUserId(String userId);
+
 	/**
      * Actionクラスへ格納するセッションマップをServiceから取得する。
      * @return セッション属性を格納するStruts2のSessionMap
