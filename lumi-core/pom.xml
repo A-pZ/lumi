@@ -121,7 +121,7 @@
         <dependency>
         	<groupId>org.codework</groupId>
         	<artifactId>struts2-thymeleaf-plugin</artifactId>
-        	<version>${struts2.version}</version>
+        	<version>${struts2.thymeleaf.version}</version>
         </dependency>
         <dependency>
         	<groupId>javax.servlet</groupId>

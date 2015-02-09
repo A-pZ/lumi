@@ -24,6 +24,7 @@
 
 
 		<slf4j.version>1.7.6</slf4j.version>
+		<struts2.thymeleaf.version>2.3.21-SNAPSHOT</struts2.thymeleaf.version>
 	</properties>
 	<modules>
 		<module>../lumi-core</module>
