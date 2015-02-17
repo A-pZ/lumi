@@ -1,5 +1,6 @@
 package ${package}.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,7 +12,6 @@ import lumi.service.LumiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
-
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -46,8 +46,8 @@ public class SampleService extends LumiService {
 
 		// 検索結果
 		List<Map<String,Object>> resultList =
-				dao.select(Query.sampleList.name(), map);
-
+		//		dao.select(Query.sampleList.name(), map);
+				new ArrayList<Map<String,Object>>();
 		// 検索結果を返す。
 		return resultList;
 	}
@@ -55,8 +55,8 @@ public class SampleService extends LumiService {
 	/**
 	 * DAOの指定。Mybatisを利用してデータベースアクセスを実行する。
 	 */
-	@Autowired
-	private DAO dao;
+	//@Autowired
+	//private DAO dao;
 
 	/**
 	 * Mybatisで定義するSQLのSQL-ID。

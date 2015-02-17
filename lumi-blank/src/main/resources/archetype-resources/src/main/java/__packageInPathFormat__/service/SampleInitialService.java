@@ -47,6 +47,6 @@ public class SampleInitialService extends LumiService {
 	/**
 	 * DAOの指定。Mybatisを利用してデータベースアクセスを実行する。
 	 */
-	@Autowired
-	private DAO dao;
+	//@Autowired
+	//private DAO dao;
 }
