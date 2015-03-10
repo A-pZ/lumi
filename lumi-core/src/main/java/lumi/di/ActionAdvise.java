@@ -130,23 +130,30 @@ public class ActionAdvise extends AbstractAdvise {
 			Annotation autowired = field.getAnnotation(Autowired.class);
 			if ( autowired != null ) {
 				if ( log.isDebugEnabled()) {
-					log.debug("find service-field: " + field.getName());
+					log.debug("found '@Autowired' field: " + field.getName());
+					log.debug("                 - .getType:" + field.getType());
 				}
 
-				// PropertyDiscriptorを利用し、@Autowired対象のクラスを取得する。
-				PropertyDescriptor descriptor =
-						new PropertyDescriptor(field.getName() , action.getClass());
+				field.setAccessible(true);
+				boolean isLumiService = (field.get(action) instanceof LumiService);
+				if ( isLumiService ) {
+					// PropertyDiscriptorを利用し、@Autowired対象のクラスを取得する。
+					PropertyDescriptor descriptor =
+							new PropertyDescriptor(field.getName() , action.getClass());
 
-				// getterメソッドの取得
-				Method getter = descriptor.getReadMethod();
+					// getterメソッドの取得
+					Method getter = descriptor.getReadMethod();
 
-				if ( getter != null ) {
-					// getterメソッドを実行し、LumiService継承のクラスを返す。
-					LumiService service = (LumiService)getter.invoke(action, (Object[])null);
-					if ( log.isDebugEnabled()) {
-						log.debug("  - service :" + service);
+					if ( getter != null ) {
+						// getterメソッドを実行し、LumiService継承のクラスを返す。
+						LumiService service = (LumiService)getter.invoke(action, (Object[])null);
+						if ( log.isDebugEnabled()) {
+							log.debug("  - service :" + service);
+						}
+						return service;
 					}
-					return service;
+				} else {
+					log.debug("                 - > skip.");
 				}
 			}
 		}
