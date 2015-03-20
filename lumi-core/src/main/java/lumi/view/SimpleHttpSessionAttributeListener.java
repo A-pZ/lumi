@@ -21,23 +21,22 @@ public class SimpleHttpSessionAttributeListener implements
 
 	public void attributeAdded(HttpSessionBindingEvent event) {
 		if (log.isDebugEnabled()) {
-			log.debug("add: " + event.getName() + "/" + event.getValue());
-			log.debug("  +-> " + event.getSource());
+			log.debug("add    : {}/{}" , event.getName() , event.getValue());
+			log.debug("  +-> {}" , event.getSource());
 		}
 	}
 
 	public void attributeRemoved(HttpSessionBindingEvent event) {
 		if (log.isDebugEnabled()) {
-			log.debug("remove: " + event.getName() + "/" + event.getValue());
-			log.debug("  +-> " + event.getSource());
+			log.debug("remove : {}/{}" , event.getName() , event.getValue());
+			log.debug("  +-> {}" , event.getSource());
 		}
 	}
 
 	public void attributeReplaced(HttpSessionBindingEvent event) {
 		if (log.isDebugEnabled()) {
-			log.debug("replace from: " + event.getName() + "/"
-					+ event.getValue());
-			log.debug("  +-> " + event.getSource());
+			log.debug("replace: {}/{}" , event.getName() , event.getValue());
+			log.debug("  +-> {}" , event.getSource());
 		}
 	}
 

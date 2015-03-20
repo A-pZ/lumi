@@ -36,22 +36,23 @@ public class SingleRecordAdvise extends AbstractAdvise {
 			returning = "returnValue")
 	public void afterReturning(JoinPoint joinPoint, Integer returnValue,
 			SingleRecord annotation) throws Throwable {
-		log.info("SingleRecordAdvise(After) : @SingleRecord("
-				+ annotation.count() + ") :" + joinPoint.toLongString());
+		log.info("SingleRecordAdvise(After) : @SingleRecord({}) :{}"
+				, annotation.count() , joinPoint.toLongString());
 
 		trace(joinPoint);
 
 		log.debug("return - " + returnValue);
 		if (annotation.count() != returnValue) {
-			log.warn("record insert/update error because insert/update count was "
-					+ returnValue + ",but expected " + annotation.count());
+			log.warn("record insert/update error because insert/update count was {} ,but expected {}."
+					, returnValue
+					, annotation.count());
 			LumiService service = (LumiService) joinPoint.getTarget();
 			service.addErrorMessage("error.exclusive");
 		}
 
 		if ( log.isDebugEnabled()) {
 			Object target = joinPoint.getTarget();
-			log.debug("afterReturning:"+ target);
+			log.debug("afterReturning:{}", target);
 		}
 	}
 }

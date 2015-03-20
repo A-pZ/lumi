@@ -27,7 +27,7 @@ public class DAOAdvise extends AbstractAdvise {
 	 */
 	@Before("execution(public * lumi.dao.DAOImpl.*(..))")
 	public void before(JoinPoint joinPoint) throws Exception {
-		log.info("DAOAdvise(before) : " + joinPoint.toLongString());
+		log.info("DAOAdvise(before) : {}" , joinPoint.toLongString());
 		trace(joinPoint);
 
 		log.info(" -- begin ->");
@@ -41,7 +41,7 @@ public class DAOAdvise extends AbstractAdvise {
 	 */
 	@AfterReturning(pointcut="execution(public * lumi.dao.DAOImpl.*(..))" , returning="retVal")
 	public void afterReturning(JoinPoint joinPoint , Object retVal) throws Throwable {
-		log.info("DAOAdvise(After ) : " + joinPoint.toLongString());
+		log.info("DAOAdvise(After ) : {}" , joinPoint.toLongString());
 		trace(joinPoint);
 
 		log.info(" <- end ----");

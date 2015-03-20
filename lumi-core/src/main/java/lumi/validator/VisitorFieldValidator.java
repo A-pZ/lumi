@@ -73,9 +73,9 @@ public class VisitorFieldValidator extends FieldValidatorSupport {
         Object value = this.getFieldValue(fieldName, object);
 
         if (value == null) {
-        	log.info("The visited object '" + fieldName +"' is null.");
+        	log.info("The visited object '{}' is null." , fieldName);
             value = generateVisitedIfNullObject(object,value);
-            log.debug("  - " + value);
+            log.debug(" - {}" , value);
 
             stack.set(fieldName, value);
         }
@@ -209,12 +209,12 @@ public class VisitorFieldValidator extends FieldValidatorSupport {
     			for ( int i=0;i<length;i++) {
     				Array.set(value, i, fieldClazz.newInstance());
     			}
-    			log.debug("   -- isArray. + count " + length);
+    			log.debug("   -- isArray, count {}" , length);
     		} else {
     			value = fieldClazz.newInstance();
     		}
 
-    		log.debug(" + " + targetFieldName + " generated.");
+    		log.debug(" + {} generated." , targetFieldName );
 
 			return value;
 		} catch (Exception e) {

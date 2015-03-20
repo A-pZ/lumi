@@ -14,7 +14,7 @@ import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 
 /**
  * Flash属性(1回のレスポンス→次のリクエストまでが寿命のスコープ)を管理するインターセプタ。
- * 
+ *
  * @author A-pZ ( Serendipity 3 ./ as sundome goes by. )(A-pZ)
  *
  */
@@ -46,12 +46,12 @@ public class FlashScopeInterceptor extends AbstractInterceptor {
 						Flash flashAnnotation =field.getAnnotation(Flash.class);
 						if ( flashAnnotation != null ) {
 							if ( log.isDebugEnabled()) {
-								log.debug("  - flash hit. " + field.getName());
+								log.debug("  - flash hit. {}" , field.getName());
 							}
 
 							Object obj = session.get(Flash.SESSION_KEYNAME);
 							if ( log.isDebugEnabled()) {
-								log.debug("  - session object -" + obj);
+								log.debug("  - session object - {}" , obj);
 							}
 						}
 					}

@@ -30,7 +30,7 @@ public class ServiceAdvise extends AbstractAdvise {
 	@Before("execution(public * lumi.service..*.*(..))")
 	public void before(JoinPoint joinPoint) throws Exception {
 		if (!logIgnore(joinPoint)) {
-			log.info("ServiceAdvise(before) : " + joinPoint.toLongString());
+			log.info("ServiceAdvise(before) : {}" , joinPoint.toLongString());
 			trace(joinPoint);
 		}
 	}
@@ -43,7 +43,7 @@ public class ServiceAdvise extends AbstractAdvise {
 	@AfterReturning("execution(public * lumi.service..*.*(..))")
 	public void afterReturning(JoinPoint joinPoint) throws Throwable {
 		if (!logIgnore(joinPoint)) {
-			log.info("ServiceAdvise(After ) : " + joinPoint.toLongString());
+			log.info("ServiceAdvise(After ) : {}" , joinPoint.toLongString());
 			trace(joinPoint);
 		}
 	}

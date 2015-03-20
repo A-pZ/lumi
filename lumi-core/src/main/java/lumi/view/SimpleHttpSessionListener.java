@@ -30,7 +30,7 @@ public class SimpleHttpSessionListener implements HttpSessionListener {
 
 			HttpSession session = event.getSession();
 			if ( session != null ) {
-				log.debug(" -- session created. [" + session.getId() +"]");
+				log.debug(" -- session created. [{}]" , session.getId());
 			}
 		}
 	}
@@ -44,11 +44,11 @@ public class SimpleHttpSessionListener implements HttpSessionListener {
 
 			HttpSession session = event.getSession();
 			if ( session != null ) {
-				log.debug(" -- session destroyed.[" + session.getId() +"]");
+				log.debug(" -- session destroyed.[{}]" , session.getId());
 
 				Enumeration<String> names = session.getAttributeNames();
 				while( names.hasMoreElements()) {
-					log.debug("   - " + names.nextElement());
+					log.debug("   - {}" , names.nextElement());
 				}
 			}
 		}

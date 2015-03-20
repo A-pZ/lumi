@@ -56,8 +56,9 @@ public class ActionAdvise extends AbstractAdvise {
 	 */
 	@Before("execution(public * *..action..*.*(..)) && @annotation(annotation)")
 	public void before(JoinPoint joinPoint, Action annotation) throws Exception {
-		log.info("ActionAdvise(before) : @Action(" + annotation.value() + ") :"
-				+ joinPoint.toLongString());
+		log.info("ActionAdvise(before) : @Action({}) : {}"
+				, annotation.value()
+				, joinPoint.toLongString() );
 
 		// トレースログの出力
 		trace(joinPoint);
@@ -81,13 +82,13 @@ public class ActionAdvise extends AbstractAdvise {
 				Map<String, Object> sessionMap = action.getSession();
 				service.setSessionMap(sessionMap);
 				if (log.isDebugEnabled()) {
-					log.debug("  -- set sessionMap to service." + sessionMap);
+					log.debug("  -- set sessionMap to service. {}" , sessionMap);
 				}
 				// Screen属性
 				Map<String, Object> storeMap = action.getStoreMap();
 				service.setStoreMap(storeMap);
 				if (log.isDebugEnabled()) {
-					log.debug("  -- set storeMap to service." + storeMap);
+					log.debug("  -- set storeMap to service. {}" , storeMap);
 				}
 				// セッション固有の情報をServiceクラスと共有する
 				HttpServletRequest request = action.getServletRequest();
@@ -130,8 +131,8 @@ public class ActionAdvise extends AbstractAdvise {
 			Annotation autowired = field.getAnnotation(Autowired.class);
 			if ( autowired != null ) {
 				if ( log.isDebugEnabled()) {
-					log.debug("found '@Autowired' field: " + field.getName());
-					log.debug("                 - .getType:" + field.getType());
+					log.debug("found '@Autowired' field: {}" , field.getName());
+					log.debug("              - .getType: {}" , field.getType());
 				}
 
 				field.setAccessible(true);
@@ -148,7 +149,7 @@ public class ActionAdvise extends AbstractAdvise {
 						// getterメソッドを実行し、LumiService継承のクラスを返す。
 						LumiService service = (LumiService)getter.invoke(action, (Object[])null);
 						if ( log.isDebugEnabled()) {
-							log.debug("  - service :" + service);
+							log.debug("  - service :{}" , service);
 						}
 						return service;
 					}
@@ -177,7 +178,7 @@ public class ActionAdvise extends AbstractAdvise {
 	@AfterThrowing(pointcut = "execution(public * *..action..*.*(..)) && @annotation(annotation)", throwing = "exception")
 	public void afterThrowing(JoinPoint joinPoint, Action annotation,
 			Exception exception) throws Throwable {
-		log.warn("ActionAdvise(afterThrowing) : " + joinPoint.toLongString());
+		log.warn("ActionAdvise(afterThrowing) : {}" , joinPoint.toLongString());
 		trace(joinPoint);
 
 		// 例外スタックトレースの出力
@@ -199,8 +200,9 @@ public class ActionAdvise extends AbstractAdvise {
 	@AfterReturning("execution(public * *..action..*.*(..)) && @annotation(annotation)")
 	public void afterReturning(JoinPoint joinPoint, Action annotation)
 			throws Throwable {
-		log.info("ActionAdvise(After ) : @Action(" + annotation.value() + ") :"
-				+ joinPoint.toLongString());
+		log.info("ActionAdvise(After ) : @Action({}) :{}"
+				, annotation.value()
+				, joinPoint.toLongString());
 		trace(joinPoint);
 
 		Object target = joinPoint.getTarget();
@@ -221,7 +223,7 @@ public class ActionAdvise extends AbstractAdvise {
 				Map<String, Object> storeMap = service.getStoreMap();
 				action.setStoreMap(storeMap);
 				if (log.isDebugEnabled()) {
-					log.debug("  -- get storeMap from service." + storeMap);
+					log.debug("  -- get storeMap from service.{}" , storeMap);
 				}
 			}
 
@@ -229,7 +231,7 @@ public class ActionAdvise extends AbstractAdvise {
 			action.setStoreMapValue(storeMapSerialize(action.getStoreMap()));
 
 			if ( log.isDebugEnabled()) {
-				log.debug("  -- serialized." + action.getStoreMapValue());
+				log.debug("  -- serialized.{}" , action.getStoreMapValue());
 			}
 		}
 	}
@@ -260,7 +262,7 @@ public class ActionAdvise extends AbstractAdvise {
 			return;
 		}
 		if (log.isDebugEnabled()) {
-			log.debug(" -- Service Instance:" + service);
+			log.debug(" -- Service Instance:{}" , service);
 		}
 
 		// Serviceクラスで格納したFieldError、ActionError、ActionMessage、ActionWarningをActionクラスへ反映する。
@@ -324,9 +326,9 @@ public class ActionAdvise extends AbstractAdvise {
 	protected void traceArguments(JoinPoint joinPoint) {
 		if (log.isDebugEnabled()) {
 			Object[] objs = joinPoint.getArgs();
-			log.debug("-- arguments[" + objs.length + "]");
+			log.debug("-- arguments[{}]" , objs.length);
 			for (Object obj : objs) {
-				log.debug(" - " + obj.toString());
+				log.debug(" - {}" , obj.toString());
 			}
 		}
 	}

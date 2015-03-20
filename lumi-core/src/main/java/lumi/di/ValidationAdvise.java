@@ -28,7 +28,7 @@ public class ValidationAdvise extends AbstractAdvise {
 	 */
 	@Before("execution(public * lumi.validator.*.validate(..))")
 	public void before(JoinPoint joinPoint) throws Exception {
-		log.info("ValidationAdvise(before) : " + joinPoint.toLongString());
+		log.info("ValidationAdvise(before) : {}" , joinPoint.toLongString());
 		trace(joinPoint);
 	}
 
@@ -39,7 +39,7 @@ public class ValidationAdvise extends AbstractAdvise {
 	 */
 	@AfterReturning("execution(public * lumi.validator.*.validate(..))")
 	public void afterReturning(JoinPoint joinPoint) throws Throwable {
-		log.info("ValidationAdvise(After ) : " + joinPoint.toLongString());
+		log.info("ValidationAdvise(After ) : {}" , joinPoint.toLongString());
 		trace(joinPoint);
 	}
 
@@ -50,8 +50,8 @@ public class ValidationAdvise extends AbstractAdvise {
 	 */
 	@AfterThrowing("execution(public * lumi.validator.*.*(..))")
 	public void afterThrowing(JoinPoint joinPoint) throws Throwable {
-		log.info("ValidationAdvise(afterThrowing) : "
-				+ joinPoint.toLongString());
+		log.info("ValidationAdvise(afterThrowing) : {}"
+				, joinPoint.toLongString());
 		trace(joinPoint);
 	}
 

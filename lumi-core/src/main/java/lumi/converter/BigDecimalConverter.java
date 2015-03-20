@@ -35,8 +35,7 @@ public class BigDecimalConverter extends StrutsTypeConverter {
 			@SuppressWarnings(value="rawtypes") Map context, String[] values, @SuppressWarnings(value="rawtypes") Class toClass) {
 		Object result = null;
 
-		log.debug("convertFromString -> " + context + ", "
-				+ values.toString() + ", " + toClass.getName());
+		log.debug("convertFromString -> {} , {} , {}" ,context, values.toString(),toClass.getName());
 
 		if (values != null) {
 			if (values.getClass().isArray() && toClass.isArray()) {
@@ -44,7 +43,7 @@ public class BigDecimalConverter extends StrutsTypeConverter {
 
 				result = Array.newInstance(componentType,
 						Array.getLength(values));
-				log.debug("result(pre):" + result);
+				log.debug("result(pre):{}" , result);
 				for (int i = 0, icount = Array.getLength(values); i < icount; i++) {
 					Array.set(result, i,
 							convertBigDecimalValue(
@@ -59,7 +58,7 @@ public class BigDecimalConverter extends StrutsTypeConverter {
 				result = convertBigDecimalValue(context , values[0] , toClass);
 			}
 		}
-		log.debug("result : " + result);
+		log.debug("result : {}" , result);
 		return result;
 	}
 
@@ -79,7 +78,7 @@ public class BigDecimalConverter extends StrutsTypeConverter {
 		String value = (String)paramArrayOfString;
 		value = value.replace(",", "");
 		if ( log.isDebugEnabled()) {
-			log.debug("value -> " +value);
+			log.debug("value -> {}" ,value);
 		}
 		try {
 			// Struts2標準で持っているBigDecimal変換

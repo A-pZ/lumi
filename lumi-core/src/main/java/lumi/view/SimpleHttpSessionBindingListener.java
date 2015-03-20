@@ -21,15 +21,15 @@ public class SimpleHttpSessionBindingListener implements
 
 	public void valueBound(HttpSessionBindingEvent event) {
 		if (log.isDebugEnabled()) {
-			log.debug("bound :" + event.getValue());
-			log.debug(" ----- " + event.getName());
+			log.debug("bound  :{}" , event.getValue());
+			log.debug("    --> {}" , event.getName());
 		}
 	}
 
 	public void valueUnbound(HttpSessionBindingEvent event) {
 		if (log.isDebugEnabled()) {
-			log.debug("Unbound :" + event.getValue());
-			log.debug(" ----- " + event.getName());
+			log.debug("Unbound:{}" , event.getValue());
+			log.debug("    --> {}" , event.getName());
 		}
 	}
 }

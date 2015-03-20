@@ -25,7 +25,7 @@ public class Struts2ActionBeanNameGenerator implements BeanNameGenerator {
 
 		String className = definition.getBeanClassName();
 
-		log.info("** generateBeanName : " + className);
+		log.info("* generateBeanName : {}" , className);
 
 		return className;
 	}

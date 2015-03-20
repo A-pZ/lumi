@@ -26,9 +26,9 @@ public abstract class AbstractAdvise {
 
 		if (log.isDebugEnabled()) {
 			if (objs != null && objs.length > 0) {
-				log.debug("-- arguments[" + objs.length + "]");
+				log.debug("-- arguments[{}]" , objs.length);
 				for (Object obj : objs) {
-					log.debug(" - " + obj);
+					log.debug(" - {}" , obj);
 				}
 			}
 		}
