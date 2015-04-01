@@ -1,13 +1,12 @@
 lumi
 ====
 
-lumi (Struts2+Spring3+Mybatis+Thymeleaf) project.
+lumi (Struts2+Spring4+Mybatis3+Thymeleaf2.1) project.
 
 * サンプルアプリケーションの導入方法
 
-lumi、lumi-core、lumi-blankの3つをダウンロードし、自分の環境へ展開します。
+lumi、lumi-core、lumi-blankの3つと、Struts2-thymeleaf-pluginをダウンロードし、自分の環境へ展開します。
 lumiは、lumi-coreとlumi-blankの親プロジェクトです。
-さらに、Struts2-thymeleaf-pluginもダウンロードし、自分の環境へ展開します。
 
 その後、lumiプロジェクトにてmvn installを実行すると、lumi-core(フレームワークの一式)と、
 ブランクプロジェクトを作るlumi-blankアーキタイプがローカルリポジトリに導入されます。
@@ -23,10 +22,10 @@ Eclipseであれば、インポート＞mavenプロジェクトのインポー�
 * 動作させるために必要なこと。
 
 src/main/webapp/META-INF/context.xmlにて、データベース接続JDBC設定があります。
-サンプルアプリではSQLは実行しませんが、データベース接続だけは行いますので
-お使いのデータベースと対応するJDBCドライバの接続設定をしてください。
+サンプルアプリではSQLは実行せず、データベース接続もしません。
+もしご利用の場合は、お使いのデータベースと対応するJDBCドライバの接続設定をしてください。
 
-またはsrc/main/resources/spring/applicationContext-transaction.xmlのファイル名の先頭に何か記号をつけて、動作しないようにしてください。
+src/main/resources/spring/applicationContext-transaction.xmlのファイル名の先頭にNOACTIVEをつけて、動作しないようにしています。
 
 * Thymeleafプラグインについて
 
@@ -34,5 +33,5 @@ src/main/webapp/META-INF/context.xmlにて、データベース接続JDBC設定�
 
 * BootstrapとjQueryのバージョン
 
-Bootstrapは3.2.0、jQueryは1.11を使っています。これらはStruts2のプラグインは使わずに、独立しています。
+Bootstrapは3.3.2、jQueryは1.11を使っています。これらはStruts2のプラグインは使わずに、独立しています。
 HTMLのインポート文にて既に対応してますので、HTML直接実行でもThymeleafからでも参照できるよう記述済みです。
