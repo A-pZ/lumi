@@ -17,15 +17,18 @@ import org.springframework.beans.factory.support.BeanNameGenerator;
 @Slf4j
 public class Struts2ActionBeanNameGenerator implements BeanNameGenerator {
 
+	private long genCount = 0;
+
 	/**
 	 * @see org.springframework.beans.factory.support.BeanNameGenerator#generateBeanName(org.springframework.beans.factory.config.BeanDefinition, org.springframework.beans.factory.support.BeanDefinitionRegistry)
 	 */
 	public String generateBeanName(BeanDefinition definition,
 			BeanDefinitionRegistry registry) {
 
-		String className = definition.getBeanClassName();
+		genCount ++;
 
-		log.info("* generateBeanName : {}" , className);
+		String className = definition.getBeanClassName();
+		log.info("* generateBeanName[{}] : {}" , genCount , className);
 
 		return className;
 	}

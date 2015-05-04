@@ -26,8 +26,9 @@ public class ToHalfWidthConverter extends StrutsTypeConverter {
 	public Object convertFromString(@SuppressWarnings(value="rawtypes") Map paramMap, String[] paramArrayOfString, @SuppressWarnings(value="rawtypes") Class paramClass) {
 		Object result = null;
 
-		if (log.isDebugEnabled()) log.debug("convertFromString -> " + paramMap + ", "
-				+ paramArrayOfString.toString() + ", " + paramClass.getName());
+		if (log.isDebugEnabled()) {log.debug("convertFromString -> {} , {} , {} "
+				,paramMap , paramArrayOfString.toString(),paramClass.getName());
+		}
 
 		if (paramArrayOfString != null) {
 			if (paramArrayOfString.getClass().isArray() && paramClass.isArray()) {
@@ -35,7 +36,7 @@ public class ToHalfWidthConverter extends StrutsTypeConverter {
 
 				result = Array.newInstance(componentType,
 						Array.getLength(paramArrayOfString));
-				if (log.isDebugEnabled()) log.debug("result(pre):" + result);
+				if (log.isDebugEnabled()) log.debug("result(pre):{}", result);
 				for (int i = 0, icount = Array.getLength(paramArrayOfString); i < icount; i++) {
 					Array.set(result, i, convertHalfbyteString(Array.get(
 							paramArrayOfString, i)));
@@ -44,8 +45,9 @@ public class ToHalfWidthConverter extends StrutsTypeConverter {
 				result = convertHalfbyteString(paramArrayOfString[0]);
 			}
 		}
-		if (log.isDebugEnabled()) log.debug("result : " + result);
-		return result;	}
+		if (log.isDebugEnabled()) log.debug("result : {}" , result);
+		return result;
+	}
 
 	/* (非 Javadoc)
 	 * @see org.apache.struts2.util.StrutsTypeConverter#convertToString(java.util.Map, java.lang.Object)
