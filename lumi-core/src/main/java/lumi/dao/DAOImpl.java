@@ -43,7 +43,7 @@ public class DAOImpl extends SqlSessionDaoSupport implements DAO {
 	 * @return [SQLID]_count
 	 */
 	private String getCountSqlId(String sqlid) {
-		return sqlid + "_count";
+		return sqlid.concat("_count");
 	}
 
 	@Override

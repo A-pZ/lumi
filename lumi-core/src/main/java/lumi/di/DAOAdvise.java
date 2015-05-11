@@ -34,7 +34,7 @@ public class DAOAdvise extends AbstractAdvise {
 	}
 
 	/**
-	 * DAOメソッドの後処理にロジックを挟むこむ。
+	 * DAOメソッドの後処理にロジックを挟みこむ。
 	 * @param joinPoint 対象メソッド
 	 * @param retVal メソッドの戻り値
 	 * @throws Throwable 発生する例外
