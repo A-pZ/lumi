@@ -29,7 +29,7 @@
   <parent>
   	<groupId>serendip.lumi</groupId>
   	<artifactId>lumi</artifactId>
-  	<version>3.1.1</version>
   	<relativePath>../lumi</relativePath>
+  	<version>${lumi.version}</version>
   </parent>
 </project>
