@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-import lumi.service.IService;
 import lumi.view.LumiValidationAwareSupport;
 
 import org.apache.commons.lang3.StringUtils;
@@ -95,16 +94,6 @@ public class LumiActionSupport extends ActionSupport implements LumiAction {
 	public String getUserDisplayName() {
 		throw new UnsupportedOperationException("未実装");
 	}
-
-	public IService getService() {
-		return this.service;
-	}
-
-	public void setService(IService service) {
-		this.service = service;
-	}
-
-	private IService service;
 
 	@Blocked
 	@Getter @Setter

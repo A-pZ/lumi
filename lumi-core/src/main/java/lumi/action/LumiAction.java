@@ -5,8 +5,6 @@ package lumi.action;
 
 import java.util.Map;
 
-import lumi.service.IService;
-
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 
@@ -23,19 +21,4 @@ public interface LumiAction extends ServletRequestAware , SessionAware , StoreMa
 	 * @return HttpSessionのMap表現。
 	 */
 	Map<String,Object> getSession();
-
-	/**
-	 * 基底Serviceクラスを取得する。
-	 * Action/ActionAdviseで利用。
-	 * @return 基底Serviceインスタンス
-	 */
-	IService getService();
-
-	/**
-	 * 基底Serviceクラスを設定する。
-	 * Action/ActionAdviseで利用。
-	 *
-	 * @param service 基底Serviceクラス
-	 */
-	void setService(IService service);
 }

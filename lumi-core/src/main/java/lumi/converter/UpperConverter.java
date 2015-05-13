@@ -22,8 +22,10 @@ public class UpperConverter extends StrutsTypeConverter {
 	public Object convertFromString(@SuppressWarnings(value="rawtypes") Map paramMap, String[] paramArrayOfString, @SuppressWarnings(value="rawtypes") Class paramClass) {
 		Object result = null;
 
-		if (log.isDebugEnabled()) log.debug("convertFromString -> " + paramMap + ", "
-				+ paramArrayOfString.toString() + ", " + paramClass.getName());
+		if (log.isDebugEnabled()) {
+			log.debug("convertFromString -> {} , {} , {}"
+				, paramMap , paramArrayOfString.toString() , paramClass.getName());
+		}
 
 		if (paramArrayOfString != null) {
 			if (paramArrayOfString.getClass().isArray() && paramClass.isArray()) {
@@ -31,7 +33,7 @@ public class UpperConverter extends StrutsTypeConverter {
 
 				result = Array.newInstance(componentType,
 						Array.getLength(paramArrayOfString));
-				if (log.isDebugEnabled()) log.debug("result(pre):" + result);
+				if (log.isDebugEnabled()) log.debug("result(pre):{}" , result);
 				for (int i = 0, icount = Array.getLength(paramArrayOfString); i < icount; i++) {
 					Array.set(result, i, convertUpperString(Array.get(
 							paramArrayOfString, i)));
@@ -40,7 +42,7 @@ public class UpperConverter extends StrutsTypeConverter {
 				result = convertUpperString(paramArrayOfString[0]);
 			}
 		}
-		if (log.isDebugEnabled()) log.debug("result : " + result);
+		if (log.isDebugEnabled()) log.debug("result : {}" , result);
 		return result;
 	}
 
