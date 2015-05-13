@@ -49,6 +49,7 @@ public class LumiService implements IService {
 	 * @param placeHolder 動的メッセージ部分。List<String>型ないしはString[]型
 	 */
 	public <T> void addInfoMessage(String messageId, T placeHolder) {
+
 		BridgeMessage message =
 		        BridgeMessageFactory.getMessage(BridgeMessage.MessageLevel.INFO, messageId, placeHolder);
 
