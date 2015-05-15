@@ -8,7 +8,7 @@
   <version>${version}</version>
 	<properties>
 		<java.version>1.7</java.version>
-		<lumi.version>3.0.0</lumi.version>
+		<lumi.version>__lumi.version__</lumi.version>
 	</properties>
 
 	<dependencies>
@@ -22,6 +22,12 @@
 			<artifactId>xbean-spring</artifactId>
 			<version>3.13</version>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.16.4</version>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 

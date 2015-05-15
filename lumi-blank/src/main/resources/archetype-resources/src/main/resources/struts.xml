@@ -11,13 +11,17 @@
 	<!-- アプリケーション共通プロパティファイル名。拡張子は不要。 -->
 	<constant name="struts.custom.i18n.resources" value="commons" />
 
-	<package name="lumi-default" abstract="true" extends="json-default">
-
+	<package name="lumi-default" abstract="true" extends="struts-thymeleaf">
 		<result-types>
-            <result-type name="thymeleaf" class="org.codework.struts.plugins.thymeleaf.ThymeleafResult"/>
-        </result-types>
+			<result-type name="json" class="org.apache.struts2.json.JSONResult" />
+		</result-types>
 
 		<interceptors>
+			<interceptor name="json"
+				class="org.apache.struts2.json.JSONInterceptor" />
+			<interceptor name="jsonValidation"
+				class="org.apache.struts2.json.JSONValidationInterceptor" />
+
 			<interceptor-stack name="lumiStack">
 				<interceptor-ref name="exception" />
 				<interceptor-ref name="servletConfig" />

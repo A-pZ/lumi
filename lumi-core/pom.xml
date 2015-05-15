@@ -144,6 +144,11 @@
         	<version>3.13</version>
         	<scope>test</scope>
         </dependency>
+        <dependency>
+        	<groupId>com.google.re2j</groupId>
+        	<artifactId>re2j</artifactId>
+        	<version>1.0</version>
+        </dependency>
     </dependencies>
 
     <build>
