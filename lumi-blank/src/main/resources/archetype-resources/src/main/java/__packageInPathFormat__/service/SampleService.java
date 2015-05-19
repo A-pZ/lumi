@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
 import lumi.dao.DAO;
 import lumi.service.LumiService;
 
@@ -24,7 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Scope("prototype")
 @Service
-@Slf4j
+@Log4j2
 @Transactional(
 	    propagation = Propagation.REQUIRED,
 	    isolation = Isolation.DEFAULT,

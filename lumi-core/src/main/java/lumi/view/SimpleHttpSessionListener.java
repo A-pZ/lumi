@@ -10,14 +10,14 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
 
 /**
  * セッションの生成/破棄のリスナー。
  * @author A-pZ ( Serendipity 3 ./ as sundome goes by. )
  *
  */
-@Slf4j
+@Log4j2
 @WebListener
 public class SimpleHttpSessionListener implements HttpSessionListener {
 

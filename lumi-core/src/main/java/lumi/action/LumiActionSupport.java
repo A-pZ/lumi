@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
 import lumi.view.LumiValidationAwareSupport;
 
 import org.apache.commons.lang3.StringUtils;
@@ -24,7 +24,7 @@ import com.opensymphony.xwork2.interceptor.annotations.Blocked;
  * @author A-pZ ( Serendipity 3 ./ as sundome goes by. )
  *
  */
-@Slf4j
+@Log4j2
 public class LumiActionSupport extends ActionSupport implements LumiAction {
     /**
      * ワーニング情報をセットする。

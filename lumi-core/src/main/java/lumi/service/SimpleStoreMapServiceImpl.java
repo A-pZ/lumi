@@ -6,7 +6,7 @@ package lumi.service;
 import java.util.HashMap;
 import java.util.Map;
 
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
 import lumi.function.StoreMapConverter;
 
 import org.apache.commons.lang3.StringUtils;
@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
  * @author A-pZ ( Serendipity 3 ./ as sundome goes by. )
  *
  */
-@Slf4j
+@Log4j2
 @Scope("singleton")
 @Service
 public class SimpleStoreMapServiceImpl implements StoreMapService {
