@@ -21,9 +21,6 @@
 		<javassist.version>3.12.0.GA</javassist.version>
 		<lombok.version>1.16.2</lombok.version>
 		<commons-codec.version>1.8</commons-codec.version>
-
-
-		<slf4j.version>1.7.6</slf4j.version>
 	</properties>
 	<modules>
 		<module>../lumi-core</module>
