@@ -5,31 +5,26 @@ Lumiプロジェクトは、Struts2をベースとするWebアプリケーショ
 ## 採用しているフレームワーク群 ##
 
 * Struts (2.3.24) -- Actionクラスで画面制御を担当。
-** Struts2-Conventionプラグイン -- アノテーションベースのAction設定＆全体的な規約を定義
-
+  * Struts2-Conventionプラグイン -- アノテーションベースのAction設定＆全体的な規約を定義
 * Spring (4.1.x) -- 実装Action内部で呼び出すロジック＋データアクセスを呼び出す
-** Struts2-Springプラグインで連携
-** Action以外からもロジックを提供可能
-*** アプリケーションの初期化処理
-*** Validationからロジックを実行
-*** AspectJを使ったAction・Serviceの前後処理
-
+  * Struts2-Springプラグインで連携
+  * Action以外からもロジックを提供可能
+    * アプリケーションの初期化処理
+    * Validationからロジックを実行
+    * AspectJを使ったAction・Serviceの前後処理
 * Mybatis (3.2.x) -- データベースとのI/O
-** Mybatis-Springプラグインで連携
-
+  * Mybatis-Springプラグインで連携
 * Thymeleaf (2.1.8) -- HTML5テンプレート
-** Struts2-Thymeleafプラグインで連携
-** Struts2-Thymeleafプラグインの入手先：https://github.com/A-pZ/struts2-thymeleaf-plugin/tree/thymeleaf-spring
-
+  * Struts2-Thymeleafプラグインで連携
+  * Struts2-Thymeleafプラグインの入手先：https://github.com/A-pZ/struts2-thymeleaf-plugin/tree/thymeleaf-spring
 * Bootstrap (3.3) -- CSSテンプレート
-
 * Log4j (2.3)
-** ロギングフレームワーク。
+  * ロギングフレームワーク。
 
 他にも開発をお助けするため、以下を提供。
 
 * lombok
-** アノテーションでボイラープレートなコードを省略
+  * アノテーションでボイラープレートなコードを省略
 
 ## 導入方法 ##
 
@@ -51,13 +46,13 @@ lumiでは、それぞれのクラスやライブラリを使う上での学習�
 * DAO - データベースアクセスの実装
 * HTML - 画面の実装
 
-1. Action - アノテーションベースのActionクラスを作ります。
+### 1. Action - アノテーションベースのActionクラスを作ります。
 
 * lumi-blankから生成したサンプルのActionクラスをコピーして使うと、Actionクラスで設定すべき内容がすべて決まる。
 * Serviceクラスの連携は、サンプルのActionクラスをコピーし、利用するServiceクラスに変更して使う。
 * Serviceクラスの実行結果を受けて画面へ渡すところはActionクラスで実装する。
 
-2. Service - データベースアクセスを使ったロジックを作ります。
+### 2. Service - データベースアクセスを使ったロジックを作ります。
 
 * 業務システムで言うビジネスロジックの開始地点。
 * lumi-blankから生成したサンプルのServiceクラスは、必須のSpring設定がアノテーションで記載。
@@ -65,15 +60,15 @@ lumiでは、それぞれのクラスやライブラリを使う上での学習�
 * Serviceの実行結果をActionへ返す。
 * トランザクション境界はActionクラス～Actionから最初に呼び出すServiceクラスの間。
 * Serviceは@Scope("prototype")、Actionクラス1インスタンスから1つのインスタンスが起動。
-** Serviceクラスのメンバ変数を使っても良い。@Scope("Singleton")の場合は、Actionクラスからスレッドセーフでなくなるのでｘ。
+  * Serviceクラスのメンバ変数を使っても良い。@Scope("Singleton")の場合は、Actionクラスからスレッドセーフでなくなるのでｘ。
 
-3. DAO - Mybatisを使ってデータベースアクセスをXML+SQLで記載します。
+### 3. DAO - Mybatisを使ってデータベースアクセスをXML+SQLで記載します。
 
 * 動的なSQLを作るO/Rマッピングツール。
 * 引数や実行結果をJavaのクラスで記述。
 * SQL＋動的に変わる部分をJSTLライクなXMLで記述。
 
-4. HTML - Thymeleafを使ったHTMLテンプレート
+### 4. HTML - Thymeleafを使ったHTMLテンプレート
 
 * HTMLをそのまま使ったテンプレートが作成できる。
 * JSP不要。フロントエンジニアが作成したHTMLに対して影響が出ない作りができる。
