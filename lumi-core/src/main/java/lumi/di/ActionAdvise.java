@@ -16,7 +16,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
 import lumi.action.LumiActionSupport;
 import lumi.service.LumiService;
 import lumi.service.StoreMapService;
@@ -41,7 +41,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  *
  */
 @Aspect
-@Slf4j
+@Log4j2
 public class ActionAdvise extends AbstractAdvise {
 
 	/**

@@ -7,14 +7,14 @@ import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpSessionBindingEvent;
 import javax.servlet.http.HttpSessionBindingListener;
 
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
 
 /**
  * Session属性のバインドリスナー。
  * @author A-pZ ( Serendipity 3 ./ as sundome goes by. )
  *
  */
-@Slf4j
+@Log4j2
 @WebListener
 public class SimpleHttpSessionBindingListener implements
 		HttpSessionBindingListener {

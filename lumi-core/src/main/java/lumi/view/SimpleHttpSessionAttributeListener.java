@@ -7,14 +7,14 @@ import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpSessionAttributeListener;
 import javax.servlet.http.HttpSessionBindingEvent;
 
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
 
 /**
  * Session属性値の更新リスナー。
  * @author A-pZ ( Serendipity 3 ./ as sundome goes by. )
  *
  */
-@Slf4j
+@Log4j2
 @WebListener
 public class SimpleHttpSessionAttributeListener implements
 		HttpSessionAttributeListener {

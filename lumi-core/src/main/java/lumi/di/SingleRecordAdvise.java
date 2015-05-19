@@ -3,7 +3,7 @@
  */
 package lumi.di;
 
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
 import lumi.annotation.SingleRecord;
 import lumi.service.LumiService;
 
@@ -19,7 +19,7 @@ import org.aspectj.lang.annotation.Aspect;
  *
  */
 @Aspect
-@Slf4j
+@Log4j2
 public class SingleRecordAdvise extends AbstractAdvise {
 
 	/**

@@ -6,7 +6,7 @@ package lumi.converter;
 import java.lang.reflect.Array;
 import java.util.Map;
 
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
 import lumi.function.StringConverter;
 
 import org.apache.struts2.util.StrutsTypeConverter;
@@ -16,7 +16,7 @@ import org.apache.struts2.util.StrutsTypeConverter;
  * @author A-pZ ( Serendipity 3 ./ as sundome goes by. )
  *
  */
-@Slf4j
+@Log4j2
 public class ToFullWidthConverter extends StrutsTypeConverter {
 
 	/* (非 Javadoc)

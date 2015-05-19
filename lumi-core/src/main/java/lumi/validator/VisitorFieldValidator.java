@@ -7,7 +7,7 @@ import java.lang.reflect.Array;
 import java.lang.reflect.Method;
 import java.util.Collection;
 
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
 import lumi.annotation.VisitorCreateIfNull;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -27,7 +27,7 @@ import com.opensymphony.xwork2.validator.validators.FieldValidatorSupport;
  * {@link VisitorCreateIfNull}
  *
  */
-@Slf4j
+@Log4j2
 public class VisitorFieldValidator extends FieldValidatorSupport {
     private String context;
     private boolean appendPrefix = true;

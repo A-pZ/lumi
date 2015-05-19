@@ -3,7 +3,7 @@ package lumi.interceptor;
 import java.lang.reflect.Field;
 import java.util.Map;
 
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
 import lumi.action.LumiAction;
 import lumi.annotation.Flash;
 
@@ -19,7 +19,7 @@ import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
  *
  */
 @Service
-@Slf4j
+@Log4j2
 public class FlashScopeInterceptor extends AbstractInterceptor {
 
 	/* (非 Javadoc)

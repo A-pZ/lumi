@@ -7,7 +7,7 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
 import lumi.dao.DAO;
 import lumi.service.LumiService;
 
@@ -23,7 +23,7 @@ import org.springframework.stereotype.Service;
  */
 @Scope("singleton")
 @Service
-@Slf4j
+@Log4j2
 public class SampleInitialService extends LumiService {
 
 	/**

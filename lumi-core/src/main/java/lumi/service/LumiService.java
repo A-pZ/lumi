@@ -9,7 +9,7 @@ import java.util.Map;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
 import lumi.vo.BridgeMessage;
 import lumi.vo.BridgeMessageFactory;
 import lumi.vo.Warning;
@@ -21,7 +21,7 @@ import lumi.vo.Warning;
  * @author A-pZ ( Serendipity 3 ./ as sundome goes by. )
  *
  */
-@Slf4j
+@Log4j2
 public class LumiService implements IService {
 
 	/**
