@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org" lang="ja">
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sth="http://serendip.lumi"
+	lang="ja">
 
 <head>
 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta>
@@ -71,9 +73,8 @@
 	</div>
 
 	<div class="container theme-showcase" role="main">
-		<div class="page-header">
-			<h2 th:text="${action.sample}">This message is only seen during
-				prototyping.</h2>
+		<div th:replace="templates/messages :: messages">
+
 		</div>
 
 		<table class="table table-border">
@@ -85,7 +86,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="data : ${action.resultList}">
+				<tr th:each="data : ${resultList}">
 					<td th:text="${data.prodcode}">prodcode</td>
 					<td th:text="${data.prodname}">prodname</td>
 					<td th:text="${data.size}">size</td>

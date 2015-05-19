@@ -48,6 +48,15 @@ public class SampleService extends LumiService {
 		List<Map<String,Object>> resultList =
 		//		dao.select(Query.sampleList.name(), map);
 				new ArrayList<Map<String,Object>>();
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("prodcode", "CXJ-039A");
+		resultMap.put("prodname", "コグマ(XJ) 39-A型");
+		resultMap.put("size", "125");
+		resultList.add(resultMap);
+
+		addInfoMessage("search.complete");
+
 		// 検索結果を返す。
 		return resultList;
 	}

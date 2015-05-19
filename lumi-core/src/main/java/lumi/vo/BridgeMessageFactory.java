@@ -70,6 +70,7 @@ public class BridgeMessageFactory {
 
 	public static BridgeMessage getMessage(MessageLevel level,
 			String messageId, Object placeHolder) {
+
 		List<String> newPlaceHolder = generatePlaceHolder(placeHolder);
 		return getMessage(level, messageId, newPlaceHolder);
 	}
@@ -120,6 +121,8 @@ public class BridgeMessageFactory {
 				String value = (String) Array.get(placeHolder, i);
 				newPlaceHolder.add(value);
 			}
+		} else if (placeHolder instanceof String) {
+			newPlaceHolder.add((String)placeHolder);
 		} else {
 			newPlaceHolder = (List<String>) placeHolder;
 		}

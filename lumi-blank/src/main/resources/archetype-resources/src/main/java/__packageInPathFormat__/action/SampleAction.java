@@ -30,7 +30,7 @@ import com.opensymphony.xwork2.interceptor.annotations.Blocked;
 @ParentPackage("lumi-default")
 @Results({
 	// location属性に指定したhtmlファイル名は、/WEB-INF/content 以下からの相対パス。
-	@Result(name = ActionSupport.SUCCESS, location = "index" , type="thymeleaf"),
+	@Result(name = ActionSupport.SUCCESS, location = "index" , type="thymeleaf-spring"),
 })
 @Controller
 @Scope("prototype")
@@ -44,10 +44,8 @@ public class SampleAction extends LumiActionSupport {
 	public String start() throws Exception {
 
 		// Serviceクラスの呼び出し
-		// List<Map<String,Object>> resultList = service.execute("param");
+		resultList = service.execute("param");
 
-		// 画面上部に表示するテキスト
-		sample = "Actionを実行しました。";
 
 		// Result値。ActionSupportの定数値を返すか、別途定義した値を返すこと。
 		// この値は@Resultで指定したname値となる。
@@ -61,9 +59,6 @@ public class SampleAction extends LumiActionSupport {
 	@Autowired
 	@Getter @Setter
 	private SampleService service;
-
-	@Getter @Setter
-	private String sample;
 
 	@Getter @Setter
 	private List<Map<String,Object>> resultList;
