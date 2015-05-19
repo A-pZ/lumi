@@ -1,37 +1,117 @@
-lumi
-====
+# Lumiプロジェクトについて #
 
-lumi (Struts2+Spring4+Mybatis3+Thymeleaf2.1) project.
+Lumiプロジェクトは、Struts2をベースとするWebアプリケーション開発に特化したプロジェクトです。
 
-* サンプルアプリケーションの導入方法
+## 採用しているフレームワーク群 ##
 
-lumi、lumi-core、lumi-blankの3つと、Struts2-thymeleaf-pluginをダウンロードし、自分の環境へ展開します。
-lumiは、lumi-coreとlumi-blankの親プロジェクトです。
+* Struts (2.3.24) -- Actionクラスで画面制御を担当。
+** Struts2-Conventionプラグイン -- アノテーションベースのAction設定＆全体的な規約を定義
 
-その後、lumiプロジェクトにてmvn installを実行すると、lumi-core(フレームワークの一式)と、
-ブランクプロジェクトを作るlumi-blankアーキタイプがローカルリポジトリに導入されます。
+* Spring (4.1.x) -- 実装Action内部で呼び出すロジック＋データアクセスを呼び出す
+** Struts2-Springプラグインで連携
+** Action以外からもロジックを提供可能
+*** アプリケーションの初期化処理
+*** Validationからロジックを実行
+*** AspectJを使ったAction・Serviceの前後処理
 
-mvn installが正常に終了(BUILD SUCCESS)したら、次にブランクプロジェクトの生成をします。
-lumi-blank直下にある、blank-generate.batを実行すると、実行ディレクトリにmavenプロジェクトを生成します。
+* Mybatis (3.2.x) -- データベースとのI/O
+** Mybatis-Springプラグインで連携
 
-これをアプリケーションとしてお使いください。
-Eclipseであれば、インポート＞mavenプロジェクトのインポートで完了します。
+* Thymeleaf (2.1.8) -- HTML5テンプレート
+** Struts2-Thymeleafプラグインで連携
+** Struts2-Thymeleafプラグインの入手先：https://github.com/A-pZ/struts2-thymeleaf-plugin/tree/thymeleaf-spring
 
-なお、プロジェクト名などはこのbatファイルにて直接記載していますので、自由に書き換えてください。
+* Bootstrap (3.3) -- CSSテンプレート
 
-* 動作させるために必要なこと。
+* Log4j (2.3)
+** ロギングフレームワーク。
 
-src/main/webapp/META-INF/context.xmlにて、データベース接続JDBC設定があります。
-サンプルアプリではSQLは実行せず、データベース接続もしません。
+他にも開発をお助けするため、以下を提供。
+
+* lombok
+** アノテーションでボイラープレートなコードを省略
+
+## 導入方法 ##
+
+以下のプロジェクトをお使いの開発環境に展開します。
+
+* lumi
+* lumi-blank
+* lumi-core
+* struts2-thymeleaf-plugin
+
+これらのプロジェクトは全てmaven管理しています。
+
+## それぞれの学習ポイント ##
+
+lumiでは、それぞれのクラスやライブラリを使う上での学習ポイントがあります。
+
+* Action - 画面の動き（画面遷移）と、呼び出すロジックの決定
+* Service - ロジックの実装
+* DAO - データベースアクセスの実装
+* HTML - 画面の実装
+
+1. Action - アノテーションベースのActionクラスを作ります。
+
+* lumi-blankから生成したサンプルのActionクラスをコピーして使うと、Actionクラスで設定すべき内容がすべて決まる。
+* Serviceクラスの連携は、サンプルのActionクラスをコピーし、利用するServiceクラスに変更して使う。
+* Serviceクラスの実行結果を受けて画面へ渡すところはActionクラスで実装する。
+
+2. Service - データベースアクセスを使ったロジックを作ります。
+
+* 業務システムで言うビジネスロジックの開始地点。
+* lumi-blankから生成したサンプルのServiceクラスは、必須のSpring設定がアノテーションで記載。
+* Actionやその他から呼び出され、Mybatisを使ったデータベースアクセスや、その他のServiceクラスを呼び出せる。
+* Serviceの実行結果をActionへ返す。
+* トランザクション境界はActionクラス～Actionから最初に呼び出すServiceクラスの間。
+* Serviceは@Scope("prototype")、Actionクラス1インスタンスから1つのインスタンスが起動。
+** Serviceクラスのメンバ変数を使っても良い。@Scope("Singleton")の場合は、Actionクラスからスレッドセーフでなくなるのでｘ。
+
+3. DAO - Mybatisを使ってデータベースアクセスをXML+SQLで記載します。
+
+* 動的なSQLを作るO/Rマッピングツール。
+* 引数や実行結果をJavaのクラスで記述。
+* SQL＋動的に変わる部分をJSTLライクなXMLで記述。
+
+4. HTML - Thymeleafを使ったHTMLテンプレート
+
+* HTMLをそのまま使ったテンプレートが作成できる。
+* JSP不要。フロントエンジニアが作成したHTMLに対して影響が出ない作りができる。
+* サーバ側の処理をタグの属性に追記する方式。
+* ThymeleafからActionクラスのフィールドを出力する方法は、${フィールド名}でよい。
+
+## プロジェクトの作り方 ##
+
+次のプロジェクトを入手（インポート）します。
+
+* lumi - すべてのプロジェクトの親プロジェクト
+* lumi-core - lumiの制御部ならびに親クラス・インタフェースの提供
+* lumi-blank - プロジェクト生成用のひな型プロジェクト
+* Struts2-thymeleaf-plugin - Struts2でThymeleafを使うためのプラグイン
+
+次に、lumiをmvn installして、lumi-coreとlumi-blankをローカルのリポジトリへインストールします。
+
+インストール後、lumi-blankをテンプレートとして新しいプロジェクトを作成します。
+任意のディレクトリにて、mvn archetype:generateを実行します。
+※mvn archetype:generateは現在のEclipse mavenプラグイン(m2e)では実行できません。別途コマンドラインから実行します。
+コマントラインからmavenを実行するには、
+
+* JavaSDKとmavenのインストール
+* 環境変数にJavaSDKとmavenのパスを追加してください。
+
+この作業は1度のみです。
+
+## アプリケーションプロジェクトの作成
+
+lumi-blankプロジェクトをインポート後、blank-generate.batを編集し、batファイルを実行してプロジェクトを生成します。
+生成したプロジェクトはmavenプロジェクトとなっているので、これをmavenプロジェクトとしてインポートします。
+
+## データベース接続について ##
+
+インポートしたプロジェクトのsrc/main/webapp/META-INF/context.xmlにて、データベース接続JDBC設定があります。
+生成したプロジェクトでは、ServiceクラスでSQLは実行せず、データベース接続もしません。
 もしご利用の場合は、お使いのデータベースと対応するJDBCドライバの接続設定をしてください。
 
-src/main/resources/spring/applicationContext-transaction.xmlのファイル名の先頭にNOACTIVEをつけて、動作しないようにしています。
+そののち、SpringFrameworkの設定ファイルで、データベース接続に関する設定ファイルである、NONACTIVE-applicationContext-transaction.xmlのファイル名から、
+"NONACTIVE-"を削除してください。これでデータベース接続が有効になり、DAOのインスタンスがServiceクラスで利用できます。
 
-* Thymeleafプラグインについて
-
-私のリポジトリに最新版を公開しておりますので、そちらの入手もお願いします。
-
-* BootstrapとjQueryのバージョン
-
-Bootstrapは3.3.2、jQueryは1.11を使っています。これらはStruts2のプラグインは使わずに、独立しています。
-HTMLのインポート文にて既に対応してますので、HTML直接実行でもThymeleafからでも参照できるよう記述済みです。
