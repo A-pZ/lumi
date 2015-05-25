@@ -8,7 +8,7 @@
   <version>${version}</version>
 	<properties>
 		<java.version>1.7</java.version>
-		<lumi.version>3.4.0</lumi.version>
+		<lumi.version>3.5.0</lumi.version>
 	</properties>
 
 	<dependencies>

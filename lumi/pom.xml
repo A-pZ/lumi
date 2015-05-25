@@ -10,7 +10,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.7</java.version>
 
-		<lumi.version>3.4.0</lumi.version>
+		<lumi.version>3.5.0</lumi.version>
 		<struts2.version>2.3.24</struts2.version>
 		<spring.version>4.1.6.RELEASE</spring.version>
 		<mybatis.version>3.2.7</mybatis.version>
