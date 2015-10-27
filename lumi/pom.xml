@@ -10,8 +10,8 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.7</java.version>
 
-		<lumi.version>3.5.0</lumi.version>
-		<struts2.version>2.3.24</struts2.version>
+		<lumi.version>3.6.0</lumi.version>
+		<struts2.version>2.5-BETA2</struts2.version>
 		<spring.version>4.1.6.RELEASE</spring.version>
 		<mybatis.version>3.3.0</mybatis.version>
 		<thymeleaf.version>2.1.4</thymeleaf.version>
@@ -52,6 +52,11 @@
 			<id>apache.snapshots</id>
 			<name>ASF Maven 2 Snapshot</name>
 			<url>https://repository.apache.org/content/groups/snapshots/</url>
+		</repository>
+		<repository>
+			<id>apache.staging</id>
+			<name>ASF Struts2.5 Snapshots</name>
+			<url>https://repository.apache.org/content/groups/staging/</url>
 		</repository>
 	</repositories>
 </project>
