@@ -4,7 +4,7 @@ Lumiプロジェクトは、Struts2をベースとするWebアプリケーショ
 
 ## 採用しているフレームワーク群 ##
 
-* Struts (2.3.24) -- Actionクラスで画面制御を担当。
+* Struts (2.5-BETA2) -- Actionクラスで画面制御を担当。
   * Struts2-Conventionプラグイン -- アノテーションベースのAction設定＆全体的な規約を定義
 * Spring (4.1.x) -- 実装Action内部で呼び出すロジック＋データアクセスを呼び出す
   * Struts2-Springプラグインで連携
@@ -16,7 +16,7 @@ Lumiプロジェクトは、Struts2をベースとするWebアプリケーショ
   * Mybatis-Springプラグインで連携
 * Thymeleaf (2.1.8) -- HTML5テンプレート
   * Struts2-Thymeleafプラグインで連携
-  * Struts2-Thymeleafプラグインの入手先：https://github.com/A-pZ/struts2-thymeleaf-plugin/tree/thymeleaf-spring
+  * Struts2-Thymeleafプラグインの入手先：https://github.com/A-pZ/struts-thymeleaf-plugin
 * Bootstrap (3.3) -- CSSテンプレート
 * Log4j (2.3)
   * ロギングフレームワーク。
@@ -33,7 +33,7 @@ Lumiプロジェクトは、Struts2をベースとするWebアプリケーショ
 * lumi
 * lumi-blank
 * lumi-core
-* struts2-thymeleaf-plugin
+* struts-thymeleaf-plugin
 
 これらのプロジェクトは全てmaven管理しています。
 
@@ -82,7 +82,7 @@ lumiでは、それぞれのクラスやライブラリを使う上での学習�
 * lumi - すべてのプロジェクトの親プロジェクト
 * lumi-core - lumiの制御部ならびに親クラス・インタフェースの提供
 * lumi-blank - プロジェクト生成用のひな型プロジェクト
-* Struts2-thymeleaf-plugin - Struts2でThymeleafを使うためのプラグイン
+* Struts-thymeleaf-plugin - Struts2でThymeleafを使うためのプラグイン
 
 次に、lumiをmvn installして、lumi-coreとlumi-blankをローカルのリポジトリへインストールします。
 
