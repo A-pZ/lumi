@@ -44,7 +44,6 @@
 		<!-- Struts2-Components -->
 		<Logger name="org.apache.struts2.components" additivity="false"
 			level="warn">
-			<level value="warn" />
 			<AppenderRef ref="stdout" />
 			<AppenderRef ref="file" />
 		</Logger>
