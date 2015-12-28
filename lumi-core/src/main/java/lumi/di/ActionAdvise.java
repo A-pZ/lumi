@@ -16,12 +16,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import lombok.extern.log4j.Log4j2;
-import lumi.action.LumiActionSupport;
-import lumi.service.LumiService;
-import lumi.service.StoreMapService;
-import lumi.vo.BridgeMessage;
-
 import org.apache.struts2.convention.annotation.Action;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
@@ -29,6 +23,12 @@ import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import lombok.extern.log4j.Log4j2;
+import lumi.action.LumiActionSupport;
+import lumi.service.LumiService;
+import lumi.service.StoreMapService;
+import lumi.vo.BridgeMessage;
 
 /**
  * Actionアノテーションで定義したActionメソッドの前処理＆後処理。 ここではActionアノテーションで定義したメソッドの後処理を実装する。
@@ -67,44 +67,47 @@ public class ActionAdvise extends AbstractAdvise {
 
 		// Actionクラスが持つServiceクラスの判定。
 		// BasicActionSupport継承クラスであれば以下の内容を実施する。
-		if (target instanceof LumiActionSupport) {
-			LumiActionSupport action = (LumiActionSupport) target;
+		if ( !(target instanceof LumiActionSupport)) {
+			log.info("  -- Action is not LumiActionSupport|subclass , skipped.");
+			return;
+		}
 
-			// Screen属性のデシリアライズ
-			action.setStoreMap(storeMapDeserialize(action.getStoreMapValue()));
+		LumiActionSupport action = (LumiActionSupport) target;
 
-			// 基底Serviceの取得
-			LumiService service = findServiceInstance(action);
+		// Screen属性のデシリアライズ
+		action.setStoreMap(storeMapDeserialize(action.getStoreMapValue()));
 
-			// Action<->Service情報の共有
-			if (service != null) {
-				// セッションMap
-				Map<String, Object> sessionMap = action.getSession();
-				service.setSessionMap(sessionMap);
-				if (log.isDebugEnabled()) {
-					log.debug("  -- set sessionMap to service. {}" , sessionMap);
-				}
-				// Screen属性
-				Map<String, Object> storeMap = action.getStoreMap();
-				service.setStoreMap(storeMap);
-				if (log.isDebugEnabled()) {
-					log.debug("  -- set storeMap to service. {}" , storeMap);
-				}
-				// セッション固有の情報をServiceクラスと共有する
-				HttpServletRequest request = action.getServletRequest();
-				HttpSession session = request.getSession(false);
-				if (session != null) {
-					service.setSessionId(session.getId());
-				}
-				// ログイン情報(ユーザID)をServiceクラスと共有する
-				Principal principal = request.getUserPrincipal();
-				if (principal != null) {
-					service.setUserId(principal.getName());
-				}
+		// 基底Serviceの取得
+		LumiService service = findServiceInstance(action);
 
-			} else {
-				log.info("  -- Action is not LumiActionSupport|subclass , skipped.");
-			}
+		// Action<->Service情報の共有
+		if (service == null) {
+			log.info("  -- Service is null , skipped.");
+			return;
+		}
+
+		// セッションMap
+		Map<String, Object> sessionMap = action.getSession();
+		service.setSessionMap(sessionMap);
+		if (log.isDebugEnabled()) {
+			log.debug("  -- set sessionMap to service. {}" , sessionMap);
+		}
+		// Screen属性
+		Map<String, Object> storeMap = action.getStoreMap();
+		service.setStoreMap(storeMap);
+		if (log.isDebugEnabled()) {
+			log.debug("  -- set storeMap to service. {}" , storeMap);
+		}
+		// セッション固有の情報をServiceクラスと共有する
+		HttpServletRequest request = action.getServletRequest();
+		HttpSession session = request.getSession(false);
+		if (session != null) {
+			service.setSessionId(session.getId());
+		}
+		// ログイン情報(ユーザID)をServiceクラスと共有する
+		Principal principal = request.getUserPrincipal();
+		if (principal != null) {
+			service.setUserId(principal.getName());
 		}
 	}
 
@@ -208,38 +211,39 @@ public class ActionAdvise extends AbstractAdvise {
 		Object target = joinPoint.getTarget();
 
 		// 継承Actionによって処理を振り分け
-		if (target instanceof LumiActionSupport) {
-			LumiActionSupport action = (LumiActionSupport) target;
+		if ( !(target instanceof LumiActionSupport)) {
+			return;
+		}
 
-			// LumiActionSupport継承時は、SpringのServiceクラスからメッセージを受け取り
-			// Actionへバインドする。
-			bindMessage(action);
+		LumiActionSupport action = (LumiActionSupport) target;
 
-			// 基底Serviceの取得
-			LumiService service = findServiceInstance(action);
+		// LumiActionSupport継承時は、SpringのServiceクラスからメッセージを受け取り
+		// Actionへバインドする。
+		bindMessage(action);
 
-			if (service != null) {
-				// Screen属性をActionへ戻す。
-				Map<String, Object> storeMap = service.getStoreMap();
-				action.setStoreMap(storeMap);
-				if (log.isDebugEnabled()) {
-					log.debug("  -- get storeMap from service.{}" , storeMap);
-				}
-			}
+		// 基底Serviceの取得
+		LumiService service = findServiceInstance(action);
 
-			// Screen属性のシリアライズ
-			action.setStoreMapValue(storeMapSerialize(action.getStoreMap()));
-
-			if ( log.isDebugEnabled()) {
-				log.debug("  -- serialized.{}" , action.getStoreMapValue());
+		if (service != null) {
+			// Screen属性をActionへ戻す。
+			Map<String, Object> storeMap = service.getStoreMap();
+			action.setStoreMap(storeMap);
+			if (log.isDebugEnabled()) {
+				log.debug("  -- get storeMap from service.{}" , storeMap);
 			}
 		}
+
+		// Screen属性のシリアライズ
+		action.setStoreMapValue(storeMapSerialize(action.getStoreMap()));
+
+		if ( log.isDebugEnabled()) {
+			log.debug("  -- serialized.{}" , action.getStoreMapValue());
+		}
+
 	}
 
 	/**
 	 * LumiActionSupport継承クラスの場合は、 ServiceクラスからActionクラスへメッセージを格納する。
-	 *
-	 * 共通モーダルの動的メッセージ、ワーニングの動的メッセージ部分もここで実施する。
 	 *
 	 * @param action
 	 *            Actionクラスのインスタンス
@@ -267,35 +271,37 @@ public class ActionAdvise extends AbstractAdvise {
 
 		// Serviceクラスで格納したFieldError、ActionError、ActionMessage、ActionWarningをActionクラスへ反映する。
 		List<BridgeMessage> messages = service.getMessages();
-		if (messages != null) {
-			for (BridgeMessage message : messages) {
-				// ActionMessage
-				if (message.getLevel() == BridgeMessage.MessageLevel.INFO) {
-					action.addActionMessage(action.getText(
-							message.getMessageId(), message.getPlaceHolder()));
-				// ActionWarning
-				} else if (message.getLevel() == BridgeMessage.MessageLevel.WARN) {
-					action.addActionWarning(action.getText(
-							message.getMessageId(), message.getPlaceHolder()));
-				// ActionError
-				} else if (message.getLevel() == BridgeMessage.MessageLevel.ERROR) {
-					action.addActionError(action.getText(
-							message.getMessageId(), message.getPlaceHolder()));
-				// FieldError
-				} else if (message.getLevel() == BridgeMessage.MessageLevel.FIELD) {
-					action.addFieldError(
-							message.getFieldname(),
-							action.getText(message.getMessageId(),
-									message.getPlaceHolder()));
-				}
-			}
-			// Serviceクラスで格納しているメッセージを出力する。
-			traceBindMessages(messages);
-		} else {
+		if (messages == null) {
 			if (log.isDebugEnabled()) {
-				log.debug("messages is null.");
+				log.debug("messages is null. -> bind message is skip.");
+			}
+			return;
+		}
+
+		for (BridgeMessage message : messages) {
+			// ActionMessage
+			if (message.getLevel() == BridgeMessage.MessageLevel.INFO) {
+				action.addActionMessage(action.getText(
+						message.getMessageId(), message.getPlaceHolder()));
+			// ActionWarning
+			} else if (message.getLevel() == BridgeMessage.MessageLevel.WARN) {
+				action.addActionWarning(action.getText(
+						message.getMessageId(), message.getPlaceHolder()));
+			// ActionError
+			} else if (message.getLevel() == BridgeMessage.MessageLevel.ERROR) {
+				action.addActionError(action.getText(
+						message.getMessageId(), message.getPlaceHolder()));
+			// FieldError
+			} else if (message.getLevel() == BridgeMessage.MessageLevel.FIELD) {
+				action.addFieldError(
+						message.getFieldname(),
+						action.getText(message.getMessageId(),
+								message.getPlaceHolder()));
 			}
 		}
+		// Serviceクラスで格納しているメッセージを出力する。
+		traceBindMessages(messages);
+
 	}
 
 	/**
