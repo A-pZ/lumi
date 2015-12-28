@@ -21,6 +21,8 @@
 				class="org.apache.struts2.json.JSONInterceptor" />
 			<interceptor name="jsonValidation"
 				class="org.apache.struts2.json.JSONValidationInterceptor" />
+			<interceptor name="annotationParams"
+				class="com.opensymphony.xwork2.interceptor.annotations.AnnotationParameterFilterIntereptor"/>
 
 			<interceptor-stack name="lumiStack">
 				<interceptor-ref name="exception" />
@@ -33,6 +35,7 @@
 				<interceptor-ref name="checkbox" />
 				<interceptor-ref name="multiselect" />
 				<interceptor-ref name="actionMappingParams" />
+				<interceptor-ref name="annotationParams" />
 				<interceptor-ref name="params" />
 				<interceptor-ref name="conversionError" />
 				<interceptor-ref name="validation">
@@ -44,6 +47,6 @@
                 </interceptor-ref>
 			</interceptor-stack>
 		</interceptors>
-
+		<default-interceptor-ref name="lumiStack"/>
 	</package>
 </struts>
