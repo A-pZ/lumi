@@ -12,12 +12,14 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.Spy;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-import lumi.action.LumiActionSupport;
+import lumi.action.MockAction;
 import lumi.service.LumiService;
 import lumi.service.SimpleStoreMapServiceImpl;
+import lumi.service.mock.MockService;
 
 public class ActionAdviseTest {
 
@@ -30,17 +32,14 @@ public class ActionAdviseTest {
 	@Mock
 	Action annotation;
 
-	@Mock
-	LumiActionSupport lumiActionSupport;
+	@Spy
+	MockAction mockAction = new MockAction();
 
 	@Mock
 	SimpleStoreMapServiceImpl storeMapService;
 
 	@Mock
 	ActionSupport actionSupport;
-
-	@Mock
-	LumiService service;
 
 	@Before
     public void setup() {
@@ -59,17 +58,17 @@ public class ActionAdviseTest {
 
 	@Test
 	public void testBefore_LumiAction_StoreMapValue生成() throws Exception {
-		lumiActionSupport.setStoreMapValue("[]");
-		when(joinPoint.getTarget()).thenReturn(lumiActionSupport);
+		mockAction.setStoreMapValue("[]");
+		when(joinPoint.getTarget()).thenReturn(mockAction);
 		advise.before(joinPoint, annotation);
 
 		// StoreMapValueの空Mapが生成される
-		assertEquals(new HashMap(), lumiActionSupport.getStoreMap());
+		assertEquals(new HashMap(), mockAction.getStoreMap());
 	}
 
 	@Test
 	public void testFindServiceInstance() throws Exception {
-		LumiService service = advise.findServiceInstance(lumiActionSupport);
-		assert true;
+		LumiService service = advise.findServiceInstance(mockAction);
+		assertEquals(new MockService(), service);
 	}
 }
