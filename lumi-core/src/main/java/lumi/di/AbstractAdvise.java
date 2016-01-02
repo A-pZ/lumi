@@ -3,9 +3,13 @@
  */
 package lumi.di;
 
-import lombok.extern.log4j.Log4j2;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 
 import org.aspectj.lang.JoinPoint;
+
+import lombok.extern.log4j.Log4j2;
 
 /**
  * LumiのAdvise抽象クラス。
@@ -14,6 +18,7 @@ import org.aspectj.lang.JoinPoint;
  */
 @Log4j2
 public abstract class AbstractAdvise {
+
 	/**
 	 * 引数オブジェクトのデバッグログを出力する。
 	 *
@@ -21,16 +26,35 @@ public abstract class AbstractAdvise {
 	 *            ポイントカットしたオブジェクト
 	 */
 	protected void trace(JoinPoint joinPoint) {
+		if (! log.isDebugEnabled()) {
+			return;
+		}
 
 		Object[] objs = joinPoint.getArgs();
+		if (objs == null || objs.length == 0) {
+			return;
+		}
 
-		if (log.isDebugEnabled()) {
-			if (objs != null && objs.length > 0) {
-				log.debug("-- arguments[{}]" , objs.length);
-				for (Object obj : objs) {
-					log.debug(" - {}" , obj);
-				}
+		log.debug("-- arguments[{}]" , objs.length);
+		for (Object obj : objs) {
+			if ( objectSize(obj) <= 32*1024 ) {
+				log.debug(" - {}" , obj);
+			} else {
+				log.debug(" - {} {}" , obj.getClass().getName() , "- over 32k");
 			}
 		}
+	}
+
+	protected int objectSize(Object object) {
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		ObjectOutputStream oos;
+		try {
+			oos = new ObjectOutputStream( baos );
+			oos.writeObject(object);
+		} catch (IOException e) {
+			log.warn(e);
+			return -1;
+		}
+		return baos.size();
 	}
 }
