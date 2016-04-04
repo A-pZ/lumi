@@ -35,7 +35,7 @@ Lumiプロジェクトは、Struts2をベースとするWebアプリケーショ
   * lumi-core : lumiプロジェクトの共通実装部分です。
 * struts-thymeleaf-plugin : lumiプロジェクトで利用するThymeleafのStruts2用プラグインです。
 
-これらのプロジェクトは全てmaven管理していますので、事前にmavenの入手(https://maven.apache.org/download.cgi)とインストールをお願いします。
+これらのプロジェクトは全てmaven管理していますので、事前にmavenの入手(https://maven.apache.org/download.cgi) とインストールをお願いします。
 
 ## インストール手順 ##
 
