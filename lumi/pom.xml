@@ -8,10 +8,10 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<java.version>1.7</java.version>
+		<java.version>1.8</java.version>
 
-		<lumi.version>4.1.0</lumi.version>
-		<struts2.version>2.5-BETA3</struts2.version>
+		<lumi.version>4.1.1</lumi.version>
+		<struts2.version>2.3.28</struts2.version>
 		<spring.version>4.1.6.RELEASE</spring.version>
 		<mybatis.version>3.3.0</mybatis.version>
 		<thymeleaf.version>2.1.4</thymeleaf.version>
@@ -22,6 +22,7 @@
 		<lombok.version>1.16.2</lombok.version>
 		<commons-codec.version>1.8</commons-codec.version>
 		<servlet-api.version>3.0.1</servlet-api.version>
+		<struts.thymeleaf.version>2.3.28</struts.thymeleaf.version>
 	</properties>
 	<modules>
 		<module>../lumi-core</module>
