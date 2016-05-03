@@ -4,7 +4,7 @@ Lumiプロジェクトは、Struts2をベースとするWebアプリケーショ
 
 ## 採用しているフレームワーク群 ##
 
-* Struts (2.5-BETA2) -- Actionクラスで画面制御を担当。
+* Struts (2.5-BETA3) -- Actionクラスで画面制御を担当。
   * Struts2-Conventionプラグイン -- アノテーションベースのAction設定＆全体的な規約を定義
 * Spring (4.1.x) -- 実装Action内部で呼び出すロジック＋データアクセスを呼び出す
   * Struts2-Springプラグインで連携
@@ -28,14 +28,33 @@ Lumiプロジェクトは、Struts2をベースとするWebアプリケーショ
 
 ## 導入方法 ##
 
-以下のプロジェクトをお使いの開発環境に展開します。
+以下の2つのプロジェクトをお使いの開発環境に展開します。
 
-* lumi
-* lumi-blank
-* lumi-core
-* struts-thymeleaf-plugin
+* lumi : lumiプロジェクトのルートプロジェクトです。
+  * lumi-blank : lumiプロジェクトを使ったアプリケーションを新規作成するためのテンプレート。
+  * lumi-core : lumiプロジェクトの共通実装部分です。
+* struts-thymeleaf-plugin : lumiプロジェクトで利用するThymeleafのStruts2用プラグインです。
 
-これらのプロジェクトは全てmaven管理しています。
+これらのプロジェクトは全てmaven管理していますので、事前にmavenの入手(https://maven.apache.org/download.cgi) とインストールをお願いします。
+
+## インストール手順 ##
+
+lumiプロジェクトを導入するには、まず先にstruts-thymeleaf-plugin(https://github.com/A-pZ/struts-thymeleaf-plugin)のローカル環境導入が必要です。
+
+* mavenのインストールを実施します
+* struts-themeleaf-plugin(https://github.com/A-pZ/struts-thymeleaf-plugin)のプロジェクトをクローンします。
+  * struts-thymeleaf-pluginプロジェクト内に含まれているinstall.batを実行します
+* lumiプロジェクトをクローンします。
+  * lumiプロジェクト内に含まれているinstall.batを実行します
+
+以上でインストール作業は完了です。
+
+## 新規アプリケーションの作成
+
+lumi-blankプロジェクトをインポート後、blank-generate.batを編集し、batファイルを実行してプロジェクトを生成します。
+生成したプロジェクトはmavenプロジェクトとなっているので、これをmavenプロジェクトとしてインポートします。
+
+その後、lumi-blankプロジェクト内にある、bank-generate.batを実行すると、lumiプロジェクトを使ったサンプルコードを含んだプロジェクトが生成されます。
 
 ## それぞれの学習ポイント ##
 
@@ -70,36 +89,10 @@ lumiでは、それぞれのクラスやライブラリを使う上での学習�
 
 ### 4. HTML - Thymeleafを使ったHTMLテンプレート
 
-* HTMLをそのまま使ったテンプレートが作成できる。
-* JSP不要。フロントエンジニアが作成したHTMLに対して影響が出ない作りができる。
-* サーバ側の処理をタグの属性に追記する方式。
-* ThymeleafからActionクラスのフィールドを出力する方法は、${フィールド名}でよい。
-
-## プロジェクトの作り方 ##
-
-次のプロジェクトを入手（インポート）します。
-
-* lumi - すべてのプロジェクトの親プロジェクト
-* lumi-core - lumiの制御部ならびに親クラス・インタフェースの提供
-* lumi-blank - プロジェクト生成用のひな型プロジェクト
-* Struts-thymeleaf-plugin - Struts2でThymeleafを使うためのプラグイン
-
-次に、lumiをmvn installして、lumi-coreとlumi-blankをローカルのリポジトリへインストールします。
-
-インストール後、lumi-blankをテンプレートとして新しいプロジェクトを作成します。
-任意のディレクトリにて、mvn archetype:generateを実行します。
-※mvn archetype:generateは現在のEclipse mavenプラグイン(m2e)では実行できません。別途コマンドラインから実行します。
-コマントラインからmavenを実行するには、
-
-* JavaSDKとmavenのインストール
-* 環境変数にJavaSDKとmavenのパスを追加してください。
-
-この作業は1度のみです。
-
-## アプリケーションプロジェクトの作成
-
-lumi-blankプロジェクトをインポート後、blank-generate.batを編集し、batファイルを実行してプロジェクトを生成します。
-生成したプロジェクトはmavenプロジェクトとなっているので、これをmavenプロジェクトとしてインポートします。
+* HTMLをそのまま使ったテンプレートが作成できます。
+* JSP不要。フロントエンジニアが作成したHTMLに対して影響が出ない作りができます。
+* サーバ側の処理をタグの属性に追記する方式です。
+* ThymeleafからActionクラスのフィールドを出力する方法は、${action.フィールド名}で可能です。
 
 ## データベース接続について ##
 

@@ -10,7 +10,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.opensymphony.xwork2.interceptor.ValidationAware;
+import com.opensymphony.xwork2.ValidationAware;
 
 /**
  * ValidationAware拡張。
