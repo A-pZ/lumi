@@ -115,8 +115,8 @@
 		</dependency>
 		<dependency>
 			<groupId>serendip.struts.plugins.thymeleaf</groupId>
-			<artifactId>struts-thymeleaf-plugin</artifactId>
-			<version>${struts.thymeleaf.version}</version>
+			<artifactId>struts2-thymeleaf3-plugin</artifactId>
+			<version>${struts2.thymeleaf3.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>

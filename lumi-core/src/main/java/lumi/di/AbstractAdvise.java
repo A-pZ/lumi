@@ -3,10 +3,6 @@
  */
 package lumi.di;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-
 import org.aspectj.lang.JoinPoint;
 
 import lombok.extern.log4j.Log4j2;
@@ -36,25 +32,5 @@ public abstract class AbstractAdvise {
 		}
 
 		log.debug("-- arguments[{}]" , objs.length);
-		for (Object obj : objs) {
-			if ( objectSize(obj) <= 32*1024 ) {
-				log.debug(" - {}" , obj);
-			} else {
-				log.debug(" - {} {}" , obj.getClass().getName() , "- over 32k");
-			}
-		}
-	}
-
-	protected int objectSize(Object object) {
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		ObjectOutputStream oos;
-		try {
-			oos = new ObjectOutputStream( baos );
-			oos.writeObject(object);
-		} catch (IOException e) {
-			log.warn(e);
-			return -1;
-		}
-		return baos.size();
 	}
 }

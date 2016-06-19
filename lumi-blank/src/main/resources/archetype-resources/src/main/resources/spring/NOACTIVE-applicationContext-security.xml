@@ -4,9 +4,9 @@
   xmlns:beans="http://www.springframework.org/schema/beans"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://www.springframework.org/schema/beans
-  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+  http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
   http://www.springframework.org/schema/security
-  http://www.springframework.org/schema/security/spring-security.xsd">
+  http://www.springframework.org/schema/security/spring-security-4.1.xsd">
 
   <!-- HTTP-Securityの設定
   auto-configをtrueにすることでデフォルト設定が有効になり、記述量を削減できる -->

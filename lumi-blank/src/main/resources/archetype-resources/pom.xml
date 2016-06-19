@@ -2,20 +2,20 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-    <groupId>\${groupId}</groupId>
-    <artifactId>\${artifactId}</artifactId>
-    <version>\${version}</version>
+    <groupId>${groupId}</groupId>
+    <artifactId>${artifactId}</artifactId>
+    <version>${version}</version>
     <packaging>war</packaging>
 	<properties>
 		<java.version>1.8</java.version>
-		<lumi.version>\${lumi.version}</lumi.version>
+		<lumi.version>${lumi.version}</lumi.version>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>serendip.lumi-core</groupId>
 			<artifactId>lumi-core</artifactId>
-			<version>\${lumi.version}</version>
+			<version>${lumi.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.xbean</groupId>
@@ -26,7 +26,7 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.16.4</version>
+			<version>1.16.6</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -43,8 +43,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
 					<encoding>UTF-8</encoding>
-					<source>\${java.version}</source>
-					<target>\${java.version}</target>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
 				</configuration>
 			</plugin>
 		</plugins>

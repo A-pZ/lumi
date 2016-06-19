@@ -1,2 +1,4 @@
 /target/
-/all.log
+/.project
+/.classpath
+/.settings/
