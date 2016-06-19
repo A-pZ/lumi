@@ -9,6 +9,10 @@
 	<properties>
 		<java.version>1.8</java.version>
 		<lumi.version>${lumi.version}</lumi.version>
+    <groupId>${groupId}</groupId>
+    <artifactId>${artifactId}</artifactId>
+    <version>${version}</version>
+    <packaging>war</packaging>
 	</properties>
 
 	<dependencies>

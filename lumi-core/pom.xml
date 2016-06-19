@@ -115,8 +115,13 @@
 		</dependency>
 		<dependency>
 			<groupId>serendip.struts.plugins.thymeleaf</groupId>
+<<<<<<< HEAD
 			<artifactId>struts2-thymeleaf3-plugin</artifactId>
 			<version>${struts2.thymeleaf3.version}</version>
+=======
+			<artifactId>struts-thymeleaf-plugin</artifactId>
+			<version>${struts.thymeleaf.version}</version>
+>>>>>>> refs/remotes/origin/master
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -163,8 +168,13 @@
 			<version>${struts2.version}</version>
 		</dependency>
 		<dependency>
+<<<<<<< HEAD
     <groupId>org.apache.struts</groupId>
     <artifactId>struts2-core</artifactId>
+=======
+    <groupId>org.apache.struts.xwork</groupId>
+    <artifactId>xwork-core</artifactId>
+>>>>>>> refs/remotes/origin/master
     <version>${struts2.version}</version>
     <exclusions>
         <exclusion>
