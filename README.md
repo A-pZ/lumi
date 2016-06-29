@@ -4,27 +4,28 @@ Lumiプロジェクトは、Struts2をベースとするWebアプリケーショ
 
 ## 採用しているフレームワーク群 ##
 
-* Struts (2.5-BETA3) -- Actionクラスで画面制御を担当。
+* Struts (2.5.1) -- Actionクラスで画面制御を担当。
   * Struts2-Conventionプラグイン -- アノテーションベースのAction設定＆全体的な規約を定義
-* Spring (4.1.x) -- 実装Action内部で呼び出すロジック＋データアクセスを呼び出す
+* Spring (4.2.6) -- 実装Action内部で呼び出すロジック＋データアクセスを呼び出す
   * Struts2-Springプラグインで連携
   * Action以外からもロジックを提供可能
     * アプリケーションの初期化処理
     * Validationからロジックを実行
     * AspectJを使ったAction・Serviceの前後処理
-* Mybatis (3.2.x) -- データベースとのI/O
+* Mybatis (3.3 -- データベースとのI/O
   * Mybatis-Springプラグインで連携
-* Thymeleaf (2.1.8) -- HTML5テンプレート
-  * Struts2-Thymeleafプラグインで連携
-  * Struts2-Thymeleafプラグインの入手先：https://github.com/A-pZ/struts-thymeleaf-plugin
+* Thymeleaf (3.0.0) -- HTML5テンプレート
+  * Struts2-Thymeleaf3プラグインで連携
+  * Struts2-Thymeleaf3プラグインの入手先：https://github.com/A-pZ/struts-thymeleaf-plugin
 * Bootstrap (3.3) -- CSSテンプレート
-* Log4j (2.3)
+* Log4j (2.5)
   * ロギングフレームワーク。
 
 他にも開発をお助けするため、以下を提供。
 
 * lombok
   * アノテーションでボイラープレートなコードを省略
+  * EclipseなどのIDEで別途lombokをインストールしてください
 
 ## 導入方法 ##
 
@@ -36,6 +37,7 @@ Lumiプロジェクトは、Struts2をベースとするWebアプリケーショ
 * struts-thymeleaf-plugin : lumiプロジェクトで利用するThymeleafのStruts2用プラグインです。
 
 これらのプロジェクトは全てmaven管理していますので、事前にmavenの入手(https://maven.apache.org/download.cgi) とインストールをお願いします。
+また、Project Lombokを利用しています。EclipseなどのIDEを利用している場合は、追加でインストールしてください。
 
 ## インストール手順 ##
 
@@ -92,7 +94,7 @@ lumiでは、それぞれのクラスやライブラリを使う上での学習�
 * HTMLをそのまま使ったテンプレートが作成できます。
 * JSP不要。フロントエンジニアが作成したHTMLに対して影響が出ない作りができます。
 * サーバ側の処理をタグの属性に追記する方式です。
-* ThymeleafからActionクラスのフィールドを出力する方法は、${action.フィールド名}で可能です。
+* ThymeleafからActionクラスのフィールドを出力する方法は、${フィールド名}で可能です。
 
 ## データベース接続について ##
 
