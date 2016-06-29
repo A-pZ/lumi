@@ -39,10 +39,10 @@ Lumiプロジェクトは、Struts2をベースとするWebアプリケーショ
 
 ## インストール手順 ##
 
-lumiプロジェクトを導入するには、まず先にstruts-thymeleaf-plugin(https://github.com/A-pZ/struts-thymeleaf-plugin)のローカル環境導入が必要です。
+lumiプロジェクトを導入するには、まず先にstruts-thymeleaf-plugin( https://github.com/A-pZ/struts-thymeleaf-plugin )のローカル環境導入が必要です。
 
 * mavenのインストールを実施します
-* struts-themeleaf-plugin(https://github.com/A-pZ/struts-thymeleaf-plugin)のプロジェクトをクローンします。
+* struts-themeleaf-plugin( https://github.com/A-pZ/struts-thymeleaf-plugin )のプロジェクトをクローンします。
   * struts-thymeleaf-pluginプロジェクト内に含まれているinstall.batを実行します
 * lumiプロジェクトをクローンします。
   * lumiプロジェクト内に含まれているinstall.batを実行します
