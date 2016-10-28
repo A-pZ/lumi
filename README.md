@@ -16,7 +16,7 @@ Lumiプロジェクトは、Struts2.5をベースとするWebアプリケーシ�
   * Mybatis-Springプラグインで連携
 * Thymeleaf (3.0.2) -- HTML5テンプレート
   * Struts2-Thymeleaf3プラグインで連携
-  * Struts2-Thymeleaf3プラグインの入手先：https://github.com/A-pZ/struts-thymeleaf-plugin
+  * Struts2-Thymeleaf3プラグインの入手先：https://github.com/A-pZ/struts2-thymeleaf3-plugin
 * Bootstrap (3.3.x) -- CSSテンプレート
 * Log4j (2.7)
   * ロギングフレームワーク。最新の2.7に対応。
