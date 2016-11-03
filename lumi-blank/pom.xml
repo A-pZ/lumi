@@ -2,10 +2,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>serendip</groupId>
 	<artifactId>lumi-blank</artifactId>
-	<name>lumi-blank Maven Webapp</name>
-	<url>http://maven.apache.org</url>
+	<name>lumi-blank</name>
+	<url>https://github.com/A-pZ/lumi</url>
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -51,9 +50,10 @@
 		</pluginManagement>
 	</build>
 	<parent>
-		<groupId>serendip.lumi</groupId>
+		<groupId>com.github.a-pz</groupId>
 		<artifactId>lumi</artifactId>
 		<relativePath>../lumi</relativePath>
 		<version>${lumi.version}</version>
 	</parent>
+	<description>This project is lumi(https://github.com/A-pZ/lumi) sub prpject.</description>
 </project>

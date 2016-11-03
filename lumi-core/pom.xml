@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+﻿<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>lumi-core</artifactId>
@@ -147,15 +146,16 @@
     <artifactId>struts2-core</artifactId>
     <version>${struts2.version}</version>
 </dependency>
-		<dependency>
-			<groupId>aspectj</groupId>
-			<artifactId>aspectjweaver</artifactId>
-			<version>1.5.4</version>
-		</dependency>
+
 		<dependency>
 			<groupId>commons-codec</groupId>
 			<artifactId>commons-codec</artifactId>
 			<version>1.10</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.8.9</version>
 		</dependency>
 	</dependencies>
 
@@ -172,10 +172,9 @@
 		</plugins>
 	</build>
 	<parent>
-		<groupId>serendip.lumi</groupId>
+		<groupId>com.github.a-pz</groupId>
 		<artifactId>lumi</artifactId>
 		<relativePath>../lumi</relativePath>
 		<version>${lumi.version}</version>
 	</parent>
-	<groupId>serendip.lumi-core</groupId>
 </project>
