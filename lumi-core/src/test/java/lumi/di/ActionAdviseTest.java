@@ -3,8 +3,6 @@ package lumi.di;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
-import java.util.HashMap;
-
 import org.apache.struts2.convention.annotation.Action;
 import org.aspectj.lang.JoinPoint;
 import org.junit.Before;
@@ -13,17 +11,19 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.opensymphony.xwork2.ActionSupport;
 
 import lumi.action.MockAction;
 import lumi.service.LumiService;
-import lumi.service.SimpleStoreMapServiceImpl;
+import lumi.service.StoreMapService;
 import lumi.service.mock.MockService;
 
 public class ActionAdviseTest {
 
-	@InjectMocks
+	@Spy
+	@Autowired
 	ActionAdvise advise;
 
 	@Mock
@@ -32,11 +32,14 @@ public class ActionAdviseTest {
 	@Mock
 	Action annotation;
 
-	@Spy
-	MockAction mockAction = new MockAction();
+	@InjectMocks
+	MockAction mockAction;// = new MockAction();
 
 	@Mock
-	SimpleStoreMapServiceImpl storeMapService;
+	MockService mockService;
+
+	@Mock
+	StoreMapService storeMapService;
 
 	@Mock
 	ActionSupport actionSupport;
@@ -57,18 +60,9 @@ public class ActionAdviseTest {
 	}
 
 	@Test
-	public void testBefore_LumiAction_StoreMapValue生成() throws Exception {
-		mockAction.setStoreMapValue("[]");
-		when(joinPoint.getTarget()).thenReturn(mockAction);
-		advise.before(joinPoint, annotation);
-
-		// StoreMapValueの空Mapが生成される
-		assertEquals(new HashMap(), mockAction.getStoreMap());
-	}
-
-	@Test
 	public void testFindServiceInstance() throws Exception {
 		LumiService service = advise.findServiceInstance(mockAction);
-		assertEquals(new MockService(), service);
+
+		assertTrue( service instanceof MockService );
 	}
 }
