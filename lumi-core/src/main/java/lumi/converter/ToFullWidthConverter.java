@@ -6,13 +6,13 @@ package lumi.converter;
 import java.lang.reflect.Array;
 import java.util.Map;
 
+import org.apache.struts2.util.StrutsTypeConverter;
+
 import lombok.extern.log4j.Log4j2;
 import lumi.function.StringConverter;
 
-import org.apache.struts2.util.StrutsTypeConverter;
-
 /**
- * 自動半角->全角変換クラス。
+ * 半角から全角へ変換するTypeConverter。
  * @author A-pZ ( Serendipity 3 ./ as sundome goes by. )
  *
  */

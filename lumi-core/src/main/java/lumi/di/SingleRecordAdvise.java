@@ -3,13 +3,13 @@
  */
 package lumi.di;
 
-import lombok.extern.log4j.Log4j2;
-import lumi.annotation.SingleRecord;
-import lumi.service.LumiService;
-
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
+
+import lombok.extern.log4j.Log4j2;
+import lumi.annotation.SingleRecord;
+import lumi.service.LumiService;
 
 /**
  * Serviceクラスの@SingleRecordアノテーションがついたメソッドに対してDIを行う。
@@ -30,6 +30,7 @@ public class SingleRecordAdvise extends AbstractAdvise {
 	 * @param annotation
 	 *            Actionアノテーション
 	 * @throws Throwable
+	 *            発生しうる例外
 	 */
 	@AfterReturning(
 			pointcut = "execution(public * lumi.service.*.*(..)) && @annotation(annotation)",

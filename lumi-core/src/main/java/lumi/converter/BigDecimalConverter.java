@@ -8,9 +8,9 @@ import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.Map;
 
-import lombok.extern.log4j.Log4j2;
-
 import org.apache.struts2.util.StrutsTypeConverter;
+
+import lombok.extern.log4j.Log4j2;
 
 /**
  * BigDecimal型の型変換。カンマ区切りの文字列入力はカンマを取り除きBigDecimalにする。
@@ -24,12 +24,11 @@ public class BigDecimalConverter extends StrutsTypeConverter {
 
 	/**
 	 * リクエストパラメータからの置換を行う。
-	 * @param Map コンテキスト情報Map
-	 * @param String[] パラメータの配列
-	 * @param Class 変換後のクラス
+	 * @param context コンテキスト情報Map
+	 * @param values パラメータの配列
+	 * @param toClass 変換後のクラス
 	 * @return 型変換後のパラメータ（オブジェクト）
 	 */
-
 	@Override
 	public Object convertFromString(
 			@SuppressWarnings(value="rawtypes") Map context, String[] values, @SuppressWarnings(value="rawtypes") Class toClass) {
@@ -65,9 +64,9 @@ public class BigDecimalConverter extends StrutsTypeConverter {
 	/**
 	 * BigDecimalへの型変換。
 	 *
-	 * @param Map コンテキスト情報Map
-	 * @param Object 変換対象の文字列
-	 * @param Class 変換後のクラス
+	 * @param context コンテキスト情報Map
+	 * @param paramArrayOfString 変換対象の文字列
+	 * @param toClass 変換後のクラス
 	 * @return 型変換した後のオブジェクト
 	 */
 	protected Object convertBigDecimalValue(

@@ -7,9 +7,9 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
-import lumi.vo.BridgeMessage.MessageLevel;
-
 import org.springframework.context.annotation.Scope;
+
+import lumi.vo.BridgeMessage.MessageLevel;
 
 /**
  * Serviceクラスからメッセージを定義するBridgeMessageを生成するファクトリクラス。
@@ -26,10 +26,10 @@ public class BridgeMessageFactory {
 	/**
 	 * Serviceクラスのメッセージインスタンスを生成する。
 	 *
-	 * @param level
-	 * @param messageId
-	 * @param placeHolder
-	 * @return
+	 * @param level メッセージレベル
+	 * @param messageId メッセージID
+	 * @param placeHolder プレースホルダ
+	 * @return メッセージ
 	 */
 	public static BridgeMessage getMessage(MessageLevel level,
 			String messageId, List<String> placeHolder) {
@@ -43,11 +43,11 @@ public class BridgeMessageFactory {
 	/**
 	 * Serviceクラスのメッセージインスタンスを生成する。FieldValidator用。
 	 *
-	 * @param level
-	 * @param messageId
-	 * @param fieldname
-	 * @param placeHolder
-	 * @return
+	 * @param level メッセージレベル
+	 * @param messageId メッセージID
+	 * @param fieldname 項目名
+	 * @param placeHolder プレースホルダ
+	 * @return メッセージ
 	 */
 	public static BridgeMessage getMessage(MessageLevel level,
 			String messageId, String fieldname, List<String> placeHolder) {
@@ -62,10 +62,10 @@ public class BridgeMessageFactory {
 	/**
 	 * Serviceクラスのメッセージインスタンスを生成する。
 	 *
-	 * @param level
-	 * @param messageId
-	 * @param placeHolder
-	 * @return
+	 * @param level メッセージレベル
+	 * @param messageId メッセージID
+	 * @param placeHolder プレースホルダ
+	 * @return メッセージ
 	 */
 
 	public static BridgeMessage getMessage(MessageLevel level,
@@ -78,11 +78,11 @@ public class BridgeMessageFactory {
 	/**
 	 * Serviceクラスのメッセージインスタンスを生成する。FieldValidator用。
 	 *
-	 * @param level
-	 * @param messageId
-	 * @param fieldname
-	 * @param placeHolder
-	 * @return
+	 * @param level メッセージレベル
+	 * @param messageId メッセージID
+	 * @param fieldname 項目名
+	 * @param placeHolder プレースホルダ
+	 * @return メッセージ
 	 */
 	public static BridgeMessage getMessage(MessageLevel level,
 			String messageId, String fieldname, Object placeHolder) {
@@ -95,7 +95,7 @@ public class BridgeMessageFactory {
 	 * @deprecated
 	 * @param messageId
 	 *            ワーニングID
-	 * @return
+	 * @return メッセージ
 	 */
 	@Deprecated
 	public static BridgeMessage getWarning(Warning warn) {
@@ -107,10 +107,10 @@ public class BridgeMessageFactory {
 	}
 
 	/**
-	 * 配列のPlaceHolderをList<String>に変更する。
+	 * 配列のPlaceHolderをList&lt;String&gt;に変更する。
 	 *
-	 * @param placeHolder
-	 * @return
+	 * @param placeHolder String配列のプレースホルダ
+	 * @return List&lt;String&gt;に変換したプレースホルダ
 	 */
 	@SuppressWarnings("unchecked")
 	public static List<String> generatePlaceHolder(Object placeHolder) {
