@@ -7,9 +7,6 @@ import java.lang.reflect.Array;
 import java.lang.reflect.Method;
 import java.util.Collection;
 
-import lombok.extern.log4j.Log4j2;
-import lumi.annotation.VisitorCreateIfNull;
-
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.inject.Inject;
 import com.opensymphony.xwork2.util.ValueStack;
@@ -18,6 +15,9 @@ import com.opensymphony.xwork2.validator.DelegatingValidatorContext;
 import com.opensymphony.xwork2.validator.ValidationException;
 import com.opensymphony.xwork2.validator.ValidatorContext;
 import com.opensymphony.xwork2.validator.validators.FieldValidatorSupport;
+
+import lombok.extern.log4j.Log4j2;
+import lumi.annotation.VisitorCreateIfNull;
 
 /**
  * VisitorFieldValidator拡張。
@@ -43,6 +43,7 @@ public class VisitorFieldValidator extends FieldValidatorSupport {
      * Sets whether the field name of this field validator should be prepended to the field name of
      * the visited field to determine the full field name when an error occurs.  The default is
      * true.
+     * @param appendPrefix true is Prefix use.
      */
     public void setAppendPrefix(boolean appendPrefix) {
         this.appendPrefix = appendPrefix;
@@ -52,6 +53,7 @@ public class VisitorFieldValidator extends FieldValidatorSupport {
      * Flags whether the field name of this field validator should be prepended to the field name of
      * the visited field to determine the full field name when an error occurs.  The default is
      * true.
+     * @return use prefix is true.
      */
     public boolean isAppendPrefix() {
         return appendPrefix;
@@ -67,6 +69,7 @@ public class VisitorFieldValidator extends FieldValidatorSupport {
 
     /**
      * 入力チェックを実施する。もし対象フィールドがnullだった場合はインスタンスを生成する。
+    * @see com.opensymphony.xwork2.validator.Validator#validate(java.lang.Object)
      */
     public void validate(Object object) throws ValidationException {
         String fieldName = getFieldName();
@@ -99,7 +102,7 @@ public class VisitorFieldValidator extends FieldValidatorSupport {
 
         stack.pop();
     }
-
+    
     private void validateArrayElements(Object[] array, String fieldName, String visitorContext) throws ValidationException {
         if (array == null) {
             return;

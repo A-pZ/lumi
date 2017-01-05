@@ -44,7 +44,7 @@ public class LumiService implements IService {
 
 	/**
 	 * INFOレベルのメッセージを追加する。動的メッセージ部分はplaceHolder部分で定義する。
-	 * @param <T>
+	 * @param <T> プレースホルダ
 	 * @param messageId メッセージプロパティに定義しているメッセージID
 	 * @param placeHolder 動的メッセージ部分。List<String>型ないしはString[]型
 	 */
@@ -127,7 +127,8 @@ public class LumiService implements IService {
 	/**
 	 * フィールドエラーのメッセージを追加する。動的メッセージ部分はplaceHolder部分で定義する。
 	 * @param messageId メッセージプロパティに定義しているメッセージID
-	 * @param placeHolder 動的メッセージ部分。List<String>型ないしはString型
+	 * @param placeHolder 動的メッセージ部分。List&lt;String&gt;型ないしはString型
+	 * @param <T> プレースホルダ
 	 * @param fieldname フィールド名
 	 */
 	public <T> void addFieldError(String messageId, T placeHolder, String fieldname) {
@@ -138,7 +139,7 @@ public class LumiService implements IService {
 	}
 
 	/**
-	 * メッセージを追加する(内部処理用。)
+	 * メッセージを追加する(内部処理用)。
 	 * @param message
 	 */
 	protected void addMessage(BridgeMessage message) {

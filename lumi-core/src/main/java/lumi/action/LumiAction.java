@@ -10,8 +10,10 @@ import org.apache.struts2.interceptor.SessionAware;
 
 
 /**
- * Lumiが実装するActionインタフェース。Struts2のインタフェースのうち、必須実装のものを束ねている。
- * {@link ServletRequestAware,SessionAware,StoreMapAware}
+ * Lumiが実装するActionインタフェース。Struts2のインタフェースのうち、必須実装のものを束ねている.
+ *
+ * ServletRequestAware,SessionAware,StoreMapAware
+ *
  * @author A-pZ ( Serendipity 3 ./ as sundome goes by. )
  *
  */

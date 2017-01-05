@@ -49,9 +49,14 @@ public interface DAO {
 	/**
 	 * MybatisのResultHandlerを利用した検索クエリーの実行を行う。
 	 * 行フェッチはこのメソッドを呼び出した先で、ResultHandlerを使うところで行う。
+	 * @param queryString SQLID
+	 * @param object 条件モデル
+	 * @param rowBounds {@link org.apache.ibatis.session.RowBounds}
+	 * @param resultHandler {@link org.apache.ibatis.session.ResultHandler}
+	 * @throws Exception SQL実行時例外やハンドラ内で発生した例外
 	 */
 	void handledResult(String queryString, Object object,
-			RowBounds rowBounds, ResultHandler resultHandler) throws Exception;
+			RowBounds rowBounds, @SuppressWarnings("rawtypes") ResultHandler resultHandler) throws Exception;
 
 	/**
 	 * selectを実行します。
@@ -60,6 +65,8 @@ public interface DAO {
 	 *            SQLID
 	 * @param object
 	 *            条件モデル
+	 * @param <T>
+	 *            検索結果で返されるListの要素の型、クラス
 	 * @return 結果オブジェクトのリスト
 	 */
 	<T> List<T> select(String queryString, Object object);
@@ -72,7 +79,7 @@ public interface DAO {
 	 *            SQLID _countがついているSQLID（指定するときは_countをつけない！）
 	 * @param param
 	 *            パラメータ
-	 * @return 検索結果
+	 * @return 検索結果（レコード数）
 	 */
 	int selectCount(String sqlid, Object param);
 
@@ -83,6 +90,8 @@ public interface DAO {
 	 *            SQLID
 	 * @param object
 	 *            条件モデル
+	 * @param <T>
+	 *            検索結果で返される型、クラス
 	 * @return 結果オブジェクト(単一)
 	 */
 	<T> Object selectObject(String queryString, Object object);
