@@ -102,7 +102,7 @@ public class VisitorFieldValidator extends FieldValidatorSupport {
 
         stack.pop();
     }
-    
+
     private void validateArrayElements(Object[] array, String fieldName, String visitorContext) throws ValidationException {
         if (array == null) {
             return;
@@ -176,9 +176,10 @@ public class VisitorFieldValidator extends FieldValidatorSupport {
     /**
      * Validation対象のObjectで、VisitorFieldValidator対象のフィールドに対し、
      * VisitorCreateIfNullアノテーションがついていた場合はインスタンスを生成する。
-     * @param object
-     * @param value
-     * @throws ValidationException
+     * @param object 対象Actionクラス
+     * @param value フィールド値
+     * @return VisitorFieldValidator対象フィールドの空インスタンス
+     * @throws ValidationException バリデーション用例外
      */
     protected Object generateVisitedIfNullObject(Object object,Object value) throws ValidationException {
     	Class<? extends Object> clazz = object.getClass();
