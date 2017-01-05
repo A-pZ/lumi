@@ -23,7 +23,7 @@ public class ValidationAdvise extends AbstractAdvise {
 
 	/**
 	 * 拡張Validationの前処にロジックを挟む。
-	 * @param 処理を差し込んだ箇所（ジョインポイント）
+	 * @param joinPoint 処理を差し込んだ箇所（ジョインポイント）
 	 * @throws Exception ジョインポイント内で発生した例外すべて
 	 */
 	@Before("execution(public * lumi.validator.*.validate(..))")
@@ -34,7 +34,7 @@ public class ValidationAdvise extends AbstractAdvise {
 
 	/**
 	 * 拡張Validationの後処理にロジックを挟む。
-	 * @param 処理を差し込んだ箇所（ジョインポイント）
+	 * @param joinPoint 処理を差し込んだ箇所（ジョインポイント）
 	 * @throws Exception ジョインポイント内で発生した例外すべて
 	 */
 	@AfterReturning("execution(public * lumi.validator.*.validate(..))")
@@ -45,7 +45,7 @@ public class ValidationAdvise extends AbstractAdvise {
 
 	/**
 	 * 拡張Validationの例外処理にロジックを挟む。
-	 * @param 処理を差し込んだ箇所（ジョインポイント）
+	 * @param joinPoint 処理を差し込んだ箇所（ジョインポイント）
 	 * @throws Exception ジョインポイント内で発生した例外すべて
 	 */
 	@AfterThrowing("execution(public * lumi.validator.*.*(..))")

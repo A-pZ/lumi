@@ -23,14 +23,12 @@ import lumi.service.LumiService;
 public class SingleRecordAdvise extends AbstractAdvise {
 
 	/**
-	 * メソッド実行後処理。@SingleRecordアノテーションで定義したメソッドの後処理を行う。 もし件数が1件でなかった場合は例外をスローする。
-	 *
-	 * @param joinPoint
-	 *            インターセプトした処理
-	 * @param annotation
-	 *            Actionアノテーション
-	 * @throws Throwable
-	 *            発生しうる例外
+	 * サービスクラスにて@SingleRecordアノテーションで定義したメソッドの後処理を行う参考実装。
+	 * もし件数が1件でなかった場合は例外をスローする。
+	 * @param joinPoint 対象ジョインポイント(Serviceクラスのメソッド)
+	 * @param returnValue Serviceクラスreturn値
+	 * @param annotation 対象メソッドのアノテーション
+	 * @throws Throwable 対象メソッド実行中の例外
 	 */
 	@AfterReturning(
 			pointcut = "execution(public * lumi.service.*.*(..)) && @annotation(annotation)",

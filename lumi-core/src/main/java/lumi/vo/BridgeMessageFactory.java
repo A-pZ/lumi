@@ -92,9 +92,9 @@ public class BridgeMessageFactory {
 
 	/**
 	 * ワーニングを設定する。
-	 * @deprecated
-	 * @param messageId
-	 *            ワーニングID
+	 * @deprecated ワーニング情報は現在非推奨です。
+	 * @param warn
+	 *            ワーニング情報インスタンス
 	 * @return メッセージ
 	 */
 	@Deprecated
