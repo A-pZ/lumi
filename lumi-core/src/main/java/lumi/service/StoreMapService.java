@@ -13,7 +13,7 @@ import java.util.Map;
 public interface StoreMapService {
 
 	/**
-	 * 文字列化したScreen属性領域を、Map<String,Object>へ復元する。
+	 * 文字列化したScreen属性領域を、Map&lt;String,Object&gt;へ復元する。
 	 * @param storeMapValue 文字列化したScreen属性領域
 	 * @return Screen属性領域のMap。
 	 */

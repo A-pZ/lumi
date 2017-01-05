@@ -3,12 +3,12 @@
  */
 package lumi.di;
 
-import lombok.extern.log4j.Log4j2;
-
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+
+import lombok.extern.log4j.Log4j2;
 
 /**
  * DAOクラスのアドバイザ。
@@ -23,7 +23,7 @@ public class DAOAdvise extends AbstractAdvise {
 	/**
 	 * DAOメソッドの前処理にロジックを挟み込む。
 	 * @param joinPoint 対象メソッド
-	 * @throws Throwable 発生する例外
+	 * @throws Exception 発生する例外
 	 */
 	@Before("execution(public * lumi.dao.DAOImpl.*(..))")
 	public void before(JoinPoint joinPoint) throws Exception {

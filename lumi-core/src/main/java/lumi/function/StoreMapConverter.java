@@ -26,9 +26,8 @@ public class StoreMapConverter {
 
 	/**
 	 * StoreMapをBASE64エンコードした文字列で返す。
-	 * @param storeMap Screen属性VOを格納したMap
+	 * @param storeMap Screen属性DTOを格納したMap
 	 * @return BASE64エンコードした文字列
-	 * @throws IOException
 	 */
 	public static String encode(Map<String, Object> storeMap)  {
 		String retValue = null;
@@ -50,9 +49,7 @@ public class StoreMapConverter {
 	/**
 	 * BASE64エンコードされた文字列をstoreMapへ変換する。
 	 * @param base64String シリアライズしたstoreMapをBASE64文字列に変換した文字列
-	 * @return storeMap
-	 * @throws IOException
-	 * @throws ClassNotFoundException
+	 * @return storeMap Screen属性DTOを格納したMap
 	 */
 	@SuppressWarnings("unchecked")
 	public static Map<String, Object> decode(String base64String) {

@@ -6,12 +6,12 @@ package lumi.service;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import lombok.extern.log4j.Log4j2;
 import lumi.dao.DAO;
 import lumi.function.StoreMapConverter;
-
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Screen属性を永続化(DB格納)する際に使う。
@@ -27,7 +27,7 @@ public class PersistenceStoreMapService implements StoreMapService {
 	 * 引数に指定した一意キーからScreen属性領域Mapを取得する。
 	 *
 	 * @param storeMapValue データベースに永続化していたScreen属性領域のキー文字列。
-	 * @return Map<String,Object> データベースに永続化していたScreen属性領域
+	 * @return Map&lt;String,Object%gt; データベースに永続化していたScreen属性領域
 	 * @see lumi.service.StoreMapService#storeMapDeserialize(java.lang.String)
 	 */
 	@SuppressWarnings("unchecked")

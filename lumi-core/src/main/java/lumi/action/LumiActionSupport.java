@@ -9,15 +9,17 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.struts2.interceptor.ServletRequestAware;
+import org.apache.struts2.interceptor.SessionAware;
+
+import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.interceptor.annotations.Blocked;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
 import lumi.view.LumiValidationAwareSupport;
-
-import org.apache.commons.lang3.StringUtils;
-
-import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.interceptor.annotations.Blocked;
 
 /**
  * LumiのActionクラス。すべてのActionクラスはこのSupportクラスを継承する。
@@ -36,7 +38,7 @@ public class LumiActionSupport extends ActionSupport implements LumiAction {
 
     /**
      * ワーニング情報を追加する。
-     * @param anWarningMessage ワーニングメッセージ
+     * @param anWarning ワーニングメッセージ
      */
     public void addActionWarning(String anWarning) {
         validationAware.addActionWarning(anWarning);
@@ -57,16 +59,18 @@ public class LumiActionSupport extends ActionSupport implements LumiAction {
             new LumiValidationAwareSupport();
 
 	/**
-	 * サーブレットリクエスト。
-	 * {@see ServletRequestAware}
+	 * サーブレットリクエスト.
+	 *
+	 * @see ServletRequestAware
 	 */
 	@Blocked
 	@Setter @Getter
 	protected HttpServletRequest servletRequest;
 
 	/**
-	 * HttpSessionのMap表現。
-	 * {@see SessionAware}
+	 * HttpSessionのMap表現.
+	 *
+	 * @see SessionAware
 	 */
 	@Blocked
 	@Setter @Getter
