@@ -17,7 +17,7 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>serendip.lumi-core</groupId>
+			<groupId>com.github.a-pz</groupId>
 			<artifactId>lumi-core</artifactId>
 			<version>${lumi.version}</version>
 		</dependency>
