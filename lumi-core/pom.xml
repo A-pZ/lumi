@@ -98,7 +98,7 @@
 			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>serendip.struts.plugins.thymeleaf</groupId>
+			<groupId>com.github.a-pz</groupId>
 			<artifactId>struts2-thymeleaf3-plugin</artifactId>
 			<version>${struts2.thymeleaf3.version}</version>
 		</dependency>
