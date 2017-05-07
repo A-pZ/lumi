@@ -4,7 +4,7 @@ Lumiプロジェクトは、Struts2.5をベースとするWebアプリケーシ�
 
 ## 採用しているフレームワーク群 ##
 
-* Struts (2.5.5) -- Actionクラスで画面制御を担当。
+* Struts (2.5.10.1) -- Actionクラスで画面制御を担当。
   * Struts2-Conventionプラグイン -- アノテーションベースのAction設定＆全体的な規約を定義
 * Spring (4.2.6) -- 実装Action内部で呼び出すロジック＋データアクセスを呼び出す
   * Struts2-Springプラグインで連携
@@ -41,11 +41,7 @@ Lumiプロジェクトは、Struts2.5をベースとするWebアプリケーシ�
 
 ## インストール手順 ##
 
-lumiプロジェクトを導入するには、まず先にstruts2-thymeleaf3-plugin( https://github.com/A-pZ/struts2-thymeleaf3-plugin )のローカル環境導入が必要です。
-
 * mavenのインストールを実施します
-* struts2-themeleaf3-plugin( https://github.com/A-pZ/struts2-thymeleaf3-plugin )のプロジェクトをクローンします。
-  * struts2-thymeleaf3-pluginプロジェクト内に含まれているinstall.batを実行します
 * lumiプロジェクトをクローンします。
   * lumiプロジェクト内に含まれているinstall.batを実行します
 
@@ -53,17 +49,17 @@ lumiプロジェクトを導入するには、まず先にstruts2-thymeleaf3-plu
 
 ## 新規アプリケーションの作成
 
-lumi-blankプロジェクトをインポート後、blank-generate.batを編集し、batファイルを実行してプロジェクトを生成します。
-生成したプロジェクトはmavenプロジェクトとなっているので、これをmavenプロジェクトとしてインポートします。
+lumiプロジェクトをインポートすると、サブプロジェクトとしてlumi-blankプロジェクトもインポートされます。blankプロジェクト内にあるblank-generate.batを編集し、batファイルを実行してプロジェクトを生成します。
 
 その後、lumi-blankプロジェクト内にある、bank-generate.batを実行すると、lumiプロジェクトを使ったサンプルコードを含んだプロジェクトが生成されます。
+生成したプロジェクトはmavenプロジェクトとなっているので、これをmavenプロジェクトとして再びEclipseなどからインポート→mavenビルドすると完了します。
 
 ## それぞれの学習ポイント ##
 
-lumiでは、それぞれのクラスやライブラリを使う上での学習ポイントがあります。
+lumiでは、それぞれのクラスやライブラリを使う上での学習ポイントと、役割があります。
 
-* Action - 画面の動き（画面遷移）と、呼び出すServiceの決定
-* Service - ロジックの実装、DAOとの橋渡し
+* Action - 画面の動き（画面遷移）と、呼び出すServiceクラスの決定
+* Service - ロジックの実装、DAOや他Serviceの橋渡し
 * DAO - データベースアクセスの実装
 * HTML - 画面の実装。Thymeleafを使ったHTMLテンプレート。
 
@@ -102,5 +98,5 @@ lumiでは、それぞれのクラスやライブラリを使う上での学習�
 生成したプロジェクトでは、ServiceクラスでSQLは実行せず、データベース接続もしません。
 もしご利用の場合は、お使いのデータベースと対応するJDBCドライバの接続設定をしてください。
 
-そののち、SpringFrameworkの設定ファイルで、データベース接続に関する設定ファイルである、NONACTIVE-applicationContext-transaction.xmlのファイル名から、"NONACTIVE-"を削除してください。これでデータベース接続が有効になり、DAOのインスタンスがServiceクラスで利用できます。
+その後、SpringFrameworkの設定ファイルで、データベース接続に関する設定ファイルである、NONACTIVE-applicationContext-transaction.xmlのファイル名から、"NONACTIVE-"を削除してください。これでデータベース接続が有効になり、DAOのインスタンスがServiceクラスから利用できます。
 
