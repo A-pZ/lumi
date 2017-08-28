@@ -12,7 +12,6 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 
 import lombok.extern.log4j.Log4j2;
-import lumi.function.IgnoreLogging;
 
 /**
  * サービス層のAdvise。
@@ -57,7 +56,7 @@ public class ServiceAdvise extends AbstractAdvise {
 	protected boolean logIgnore(JoinPoint joinPoint) {
 		String name = joinPoint.getSignature().getName().substring(0,PREFIX_LENGTH);
 
-		return IgnoreLogging.isIgnore(name);
+		return name.matches("^(g|s)et(A-Z).*");
 	}
 
 	/** 無視するメソッド名の接頭辞 */
