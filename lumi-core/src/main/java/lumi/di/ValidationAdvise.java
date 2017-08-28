@@ -26,7 +26,7 @@ public class ValidationAdvise extends AbstractAdvise {
 	 * @param joinPoint 処理を差し込んだ箇所（ジョインポイント）
 	 * @throws Exception ジョインポイント内で発生した例外すべて
 	 */
-	@Before("execution(public * lumi.validator.*.validate(..))")
+	@Before("execution(public * *.validator.*.validate(..))")
 	public void before(JoinPoint joinPoint) throws Exception {
 		log.info("ValidationAdvise(before) : {}" , joinPoint.toLongString());
 		trace(joinPoint);
@@ -37,7 +37,7 @@ public class ValidationAdvise extends AbstractAdvise {
 	 * @param joinPoint 処理を差し込んだ箇所（ジョインポイント）
 	 * @throws Exception ジョインポイント内で発生した例外すべて
 	 */
-	@AfterReturning("execution(public * lumi.validator.*.validate(..))")
+	@AfterReturning("execution(public * *.validator.*.validate(..))")
 	public void afterReturning(JoinPoint joinPoint) throws Throwable {
 		log.info("ValidationAdvise(After ) : {}" , joinPoint.toLongString());
 		trace(joinPoint);
@@ -48,7 +48,7 @@ public class ValidationAdvise extends AbstractAdvise {
 	 * @param joinPoint 処理を差し込んだ箇所（ジョインポイント）
 	 * @throws Exception ジョインポイント内で発生した例外すべて
 	 */
-	@AfterThrowing("execution(public * lumi.validator.*.*(..))")
+	@AfterThrowing("execution(public * *.validator.*.*(..))")
 	public void afterThrowing(JoinPoint joinPoint) throws Throwable {
 		log.info("ValidationAdvise(afterThrowing) : {}"
 				, joinPoint.toLongString());

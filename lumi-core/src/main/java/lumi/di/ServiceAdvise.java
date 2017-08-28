@@ -28,7 +28,7 @@ public class ServiceAdvise extends AbstractAdvise {
 	 * @param joinPoint 処理を差し込んだ箇所（ジョインポイント）
 	 * @throws Exception ジョインポイント内で発生した例外すべて
 	 */
-	@Before("execution(public * lumi.service..*.*(..))")
+	@Before("execution(public * *.service..*.*(..))")
 	public void before(JoinPoint joinPoint) throws Exception {
 		if (!logIgnore(joinPoint)) {
 			log.info("ServiceAdvise(before) : {}" , joinPoint.toLongString());
@@ -41,7 +41,7 @@ public class ServiceAdvise extends AbstractAdvise {
 	 * @param joinPoint 処理を差し込んだ箇所（ジョインポイント）
 	 * @throws Throwable ジョインポイント内で発生した例外すべて
 	 */
-	@AfterReturning("execution(public * lumi.service..*.*(..))")
+	@AfterReturning("execution(public * *.service..*.*(..))")
 	public void afterReturning(JoinPoint joinPoint) throws Throwable {
 		if (!logIgnore(joinPoint)) {
 			log.info("ServiceAdvise(After ) : {}" , joinPoint.toLongString());
