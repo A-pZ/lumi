@@ -6,8 +6,12 @@ package lumi.validator;
 import java.lang.reflect.Array;
 import java.lang.reflect.Method;
 import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
 
 import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.CompositeTextProvider;
+import com.opensymphony.xwork2.TextProvider;
 import com.opensymphony.xwork2.inject.Inject;
 import com.opensymphony.xwork2.util.ValueStack;
 import com.opensymphony.xwork2.validator.ActionValidatorManager;
@@ -74,7 +78,7 @@ public class VisitorFieldValidator extends FieldValidatorSupport {
     public void validate(Object object) throws ValidationException {
         String fieldName = getFieldName();
         Object value = this.getFieldValue(fieldName, object);
-
+        ValueStack stack = ActionContext.getContext().getValueStack();
         if (value == null) {
         	log.info("The visited object '{}' is null." , fieldName);
             value = generateVisitedIfNullObject(object,value);
@@ -123,24 +127,37 @@ public class VisitorFieldValidator extends FieldValidatorSupport {
         ValidatorContext validatorContext;
 
         if (appendPrefix) {
-            validatorContext = new AppendingValidatorContext(getValidatorContext(), o, fieldName, getMessage(o));
+            ValidatorContext parent = getValidatorContext();
+            validatorContext = new AppendingValidatorContext(parent, createTextProvider(o, parent), fieldName, getMessage(o));
         } else {
             ValidatorContext parent = getValidatorContext();
-            validatorContext = new DelegatingValidatorContext(parent, DelegatingValidatorContext.makeTextProvider(o, parent), parent);
+            CompositeTextProvider textProvider = createTextProvider(o, parent);
+            validatorContext = new DelegatingValidatorContext(parent, textProvider, parent);
         }
 
         actionValidatorManager.validate(o, visitorContext, validatorContext);
         stack.pop();
     }
 
+    private CompositeTextProvider createTextProvider(Object o, ValidatorContext parent) {
+        List<TextProvider> textProviders = new LinkedList<>();
+        if (o instanceof TextProvider) {
+            textProviders.add((TextProvider) o);
+        } else {
+            textProviders.add(textProviderFactory.createInstance(o.getClass()));
+        }
+        textProviders.add(parent);
+
+        return new CompositeTextProvider(textProviders);
+    }
 
     public static class AppendingValidatorContext extends DelegatingValidatorContext {
         private String field;
         private String message;
         private ValidatorContext parent;
 
-        public AppendingValidatorContext(ValidatorContext parent, Object object, String field, String message) {
-            super(parent, makeTextProvider(object, parent), parent);
+        public AppendingValidatorContext(ValidatorContext parent, TextProvider textProvider, String field, String message) {
+            super(parent, textProvider, parent);
 
             this.field = field;
             this.message = message;
@@ -151,25 +168,28 @@ public class VisitorFieldValidator extends FieldValidatorSupport {
          * Translates a simple field name into a full field name in Ognl syntax
          *
          * @param fieldName field name in OGNL syntax
-         * @return field name in OGNL syntax
+         * @return full field name in OGNL syntax
          */
         @Override
         public String getFullFieldName(String fieldName) {
+            if (parent instanceof VisitorFieldValidator.AppendingValidatorContext) {
+                return parent.getFullFieldName(field + "." + fieldName);
+            }
             return field + "." + fieldName;
         }
 
-        public String getFullFieldNameFromParent(String fieldName) {
-            return parent.getFullFieldName(field + "." + fieldName);
+        public String getFieldNameWithField(String fieldName) {
+            return field + "." + fieldName;
         }
 
         @Override
         public void addActionError(String anErrorMessage) {
-            super.addFieldError(getFullFieldName(field), message + anErrorMessage);
+            super.addFieldError(getFieldNameWithField(field), message + anErrorMessage);
         }
 
         @Override
         public void addFieldError(String fieldName, String errorMessage) {
-            super.addFieldError(getFullFieldName(fieldName), message + errorMessage);
+            super.addFieldError(getFieldNameWithField(fieldName), message + errorMessage);
         }
     }
 
@@ -227,4 +247,5 @@ public class VisitorFieldValidator extends FieldValidatorSupport {
 
 		}
     }
+
 }
