@@ -80,8 +80,8 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
 
-		<lumi.version>1.0.0-SNAPSHOT</lumi.version>
-		<struts2.version>2.5.10.1</struts2.version>
+		<lumi.version>1.1.0-SNAPSHOT</lumi.version>
+		<struts2.version>2.5.10.3</struts2.version>
 		<spring.version>4.3.6.RELEASE</spring.version>
 		<mybatis.version>3.4.4</mybatis.version>
 		<thymeleaf.version>3.0.7.RELEASE</thymeleaf.version>
