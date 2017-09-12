@@ -3,13 +3,13 @@
  */
 package lumi.di;
 
-import lombok.extern.log4j.Log4j2;
-
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+
+import lombok.extern.log4j.Log4j2;
 
 /**
  * 拡張Validation用のアドバイザ。
@@ -23,10 +23,10 @@ public class ValidationAdvise extends AbstractAdvise {
 
 	/**
 	 * 拡張Validationの前処にロジックを挟む。
-	 * @param joinPoint
-	 * @throws Exception
+	 * @param joinPoint 処理を差し込んだ箇所（ジョインポイント）
+	 * @throws Exception ジョインポイント内で発生した例外すべて
 	 */
-	@Before("execution(public * lumi.validator.*.validate(..))")
+	@Before("execution(public * *.validator.*.validate(..))")
 	public void before(JoinPoint joinPoint) throws Exception {
 		log.info("ValidationAdvise(before) : {}" , joinPoint.toLongString());
 		trace(joinPoint);
@@ -34,10 +34,10 @@ public class ValidationAdvise extends AbstractAdvise {
 
 	/**
 	 * 拡張Validationの後処理にロジックを挟む。
-	 * @param joinPoint
-	 * @throws Throwable
+	 * @param joinPoint 処理を差し込んだ箇所（ジョインポイント）
+	 * @throws Exception ジョインポイント内で発生した例外すべて
 	 */
-	@AfterReturning("execution(public * lumi.validator.*.validate(..))")
+	@AfterReturning("execution(public * *.validator.*.validate(..))")
 	public void afterReturning(JoinPoint joinPoint) throws Throwable {
 		log.info("ValidationAdvise(After ) : {}" , joinPoint.toLongString());
 		trace(joinPoint);
@@ -45,10 +45,10 @@ public class ValidationAdvise extends AbstractAdvise {
 
 	/**
 	 * 拡張Validationの例外処理にロジックを挟む。
-	 * @param joinPoint
-	 * @throws Throwable
+	 * @param joinPoint 処理を差し込んだ箇所（ジョインポイント）
+	 * @throws Exception ジョインポイント内で発生した例外すべて
 	 */
-	@AfterThrowing("execution(public * lumi.validator.*.*(..))")
+	@AfterThrowing("execution(public * *.validator.*.*(..))")
 	public void afterThrowing(JoinPoint joinPoint) throws Throwable {
 		log.info("ValidationAdvise(afterThrowing) : {}"
 				, joinPoint.toLongString());

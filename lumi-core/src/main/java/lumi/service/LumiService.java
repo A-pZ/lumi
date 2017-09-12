@@ -44,9 +44,9 @@ public class LumiService implements IService {
 
 	/**
 	 * INFOレベルのメッセージを追加する。動的メッセージ部分はplaceHolder部分で定義する。
-	 * @param <T>
+	 * @param <T> メッセージプレースホルダの型
 	 * @param messageId メッセージプロパティに定義しているメッセージID
-	 * @param placeHolder 動的メッセージ部分。List<String>型ないしはString[]型
+	 * @param placeHolder 動的メッセージ部分。List&lt;String&gt;型ないしはString[]型
 	 */
 	public <T> void addInfoMessage(String messageId, T placeHolder) {
 
@@ -69,8 +69,9 @@ public class LumiService implements IService {
 
 	/**
 	 * ERRORレベルのメッセージを追加する。動的メッセージ部分はplaceHolder部分で定義する。
+	 * @param <T> メッセージプレースホルダの型
 	 * @param messageId メッセージプロパティに定義しているメッセージID
-	 * @param placeHolder 動的メッセージ部分。List<String>型ないしはString型
+	 * @param placeHolder 動的メッセージ部分。List&lt;String&gt;型ないしはString[]型
 	 */
 	public <T> void addErrorMessage(String messageId, T placeHolder) {
 		BridgeMessage message =
@@ -92,10 +93,11 @@ public class LumiService implements IService {
 
 	/**
 	 * WARNレベルのメッセージを追加する。動的メッセージ部分はplaceHolder部分で定義する。
+	 * @param <T> メッセージプレースホルダの型
 	 * @param messageId メッセージプロパティに定義しているメッセージID
-	 * @param placeHolder 動的メッセージ部分。List<String>型ないしはString型
+	 * @param placeHolder プレースホルダ
 	 */
-	public <T> void addWarnMessage(String messageId , Thread placeHolder) {
+	public <T> void addWarnMessage(String messageId , T placeHolder) {
 		BridgeMessage message =
 		        BridgeMessageFactory.getMessage(BridgeMessage.MessageLevel.WARN, messageId, placeHolder);
 
@@ -127,7 +129,8 @@ public class LumiService implements IService {
 	/**
 	 * フィールドエラーのメッセージを追加する。動的メッセージ部分はplaceHolder部分で定義する。
 	 * @param messageId メッセージプロパティに定義しているメッセージID
-	 * @param placeHolder 動的メッセージ部分。List<String>型ないしはString型
+	 * @param placeHolder 動的メッセージ部分。List&lt;String&gt;型ないしはString型
+	 * @param <T> プレースホルダ
 	 * @param fieldname フィールド名
 	 */
 	public <T> void addFieldError(String messageId, T placeHolder, String fieldname) {
@@ -138,8 +141,8 @@ public class LumiService implements IService {
 	}
 
 	/**
-	 * メッセージを追加する(内部処理用。)
-	 * @param message
+	 * メッセージを追加する(内部処理用)。
+	 * @param message メッセージ用インスタンス
 	 */
 	protected void addMessage(BridgeMessage message) {
 		if (messages == null) {
@@ -150,7 +153,7 @@ public class LumiService implements IService {
 
 	/**
 	 * メッセージの集合を取得する。Actionクラス用。
-	 * @return
+	 * @return メッセージ用インスタンスのList
 	 */
 	public List<BridgeMessage> getMessages() {
 		return messages;
@@ -158,7 +161,7 @@ public class LumiService implements IService {
 
 	/**
 	 * メッセージの集合を設定する。
-	 * @param messages
+	 * @param messages メッセージ用インスタンスのList
 	 */
 	public void setMessages(List<BridgeMessage> messages) {
 		this.messages = messages;

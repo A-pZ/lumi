@@ -115,12 +115,12 @@ public class ActionAdvise extends AbstractAdvise {
 	 * ActionクラスからSpring管理下のServiceインスタンスを取得する。
 	 * @param action LumiActionSupport継承のインスタンス
 	 * @return LumiService継承のインスタンス（ある場合のみ）
-	 * @throws SecurityException
-	 * @throws NoSuchMethodException
-	 * @throws InvocationTargetException
-	 * @throws IllegalArgumentException
-	 * @throws IllegalAccessException
-	 * @throws IntrospectionException
+	 * @throws SecurityException リフレクションが取得できなかった場合
+	 * @throws NoSuchMethodException メソッドが取得できなかった場合
+	 * @throws InvocationTargetException 実行対象のインスタンスが取得できなかった場合
+	 * @throws IllegalArgumentException 対象メソッドの引数違い
+	 * @throws IllegalAccessException リフレクションのアクセス例外
+	 * @throws IntrospectionException 対象メソッドの仕様違い
 	 */
 	protected LumiService findServiceInstance(LumiActionSupport action) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, IntrospectionException  {
 		Field[] fields = action.getClass().getDeclaredFields();
@@ -247,12 +247,12 @@ public class ActionAdvise extends AbstractAdvise {
 	 *
 	 * @param action
 	 *            Actionクラスのインスタンス
-	 * @throws IntrospectionException
-	 * @throws SecurityException
-	 * @throws NoSuchMethodException
-	 * @throws InvocationTargetException
-	 * @throws IllegalArgumentException
-	 * @throws IllegalAccessException
+	 * @throws SecurityException リフレクションが取得できなかった場合
+	 * @throws NoSuchMethodException メソッドが取得できなかった場合
+	 * @throws InvocationTargetException 実行対象のインスタンスが取得できなかった場合
+	 * @throws IllegalArgumentException 対象メソッドの引数違い
+	 * @throws IllegalAccessException リフレクションのアクセス例外
+	 * @throws IntrospectionException 対象クラスの署名不一致例外など
 	 */
 	protected void bindMessage(LumiActionSupport action) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, IntrospectionException {
 		if (log.isDebugEnabled()) {

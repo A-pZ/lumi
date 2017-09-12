@@ -7,7 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 
 
 /**
- * 文字列操作のユーティリティクラス．
+ * 文字列操作のユーティリティクラス。適宜利用してください。
  *
  * @author A-pZ ( Serendipity 3 ./ as sundome goes by. )
  */
@@ -297,8 +297,7 @@ public class StringConverter {
 	/**
 	 * 全角英数字を半角英数字に変換します． 文字列に全角英数字以外が混在する場合、その文字は変換しない。
 	 *
-	 * @param s
-	 *            変換したい文字
+	 * @param s 変換したい文字
 	 * @return 半角に変換後の文字
 	 */
 	public static String zenkakuToHankakuEisu(String s) {
@@ -339,21 +338,6 @@ public class StringConverter {
 	}
 
 	/**
-	 * DOT区切り文字列の最後の区画を取得します．
-	 *
-	 * @param value
-	 * @return String
-	 */
-	public static String getLastParam(String value) {
-		String result = value;
-		StringTokenizer st = new StringTokenizer(result, ".");
-		while (st.hasMoreTokens()) {
-			result = st.nextToken();
-		}
-		return result;
-	}
-
-	/**
 	 * 全角スペースのトリムを行います．
 	 *
 	 * @param str
@@ -373,7 +357,7 @@ public class StringConverter {
 	/**
 	 * 記号を取り除いた文字を返します．
 	 *
-	 * @param str
+	 * @param str 対象文字列
 	 * @return 記号が取り除かれた文字列
 	 */
 	public static String removeSymbol(String str) {
@@ -450,14 +434,12 @@ public class StringConverter {
 
 
 	/**
-	 * 数字以外をすべて削除し、数値だけにして返す
+	 * 数字以外をすべて削除し、数値だけにして返す。
 	 *
 	 * 全角数字は半角数字に変換する
 	 *
-	 * @throw Null文字の場合はNullPointerExceptionをスロー
-	 *
-	 * @param buf
-	 * @return
+	 * @param buf 対象文字列
+	 * @return 数値だけにした文字列
 	 */
 	public static String removeCharAndChangeZenkakuNum(String buf) {
 		String hankakuValue = StringConverter.zenkakuToHankakuEisu(buf);
@@ -859,8 +841,7 @@ public class StringConverter {
 	/**
 	 * 全角小文字のヮ、ゎを全角ワ、わに変換します．(SRM入会、登録内容変更用)
 	 *
-	 * @param s
-	 *            変換したい文字
+	 * @param s 変換したい文字
 	 * @return 変換後の文字
 	 */
 	public static String zenkakuToZenkakuSpecialChar(String s) {
@@ -874,8 +855,8 @@ public class StringConverter {
 	/**
 	 * 全角スペース、長音、ヴを半角に変換します。
 	 *
-	 * @param s
-	 * @return
+	 * @param s 変換したい文字
+	 * @return 変換後の文字
 	 */
 	public static String zenkakuToHankakuFuriganaKigou(String s) {
 		if (s == null) {
@@ -889,8 +870,7 @@ public class StringConverter {
 	/**
 	 * バイト配列を16進数の文字列に変換する。
 	 *
-	 * @param bytes
-	 *            バイト配列
+	 * @param bytes バイト配列
 	 * @return 16進数の文字列
 	 */
 	public static String asHex(byte bytes[]) {
@@ -936,8 +916,8 @@ public class StringConverter {
 	 * 半角フィールドの文字列に全角文字が存在した場合に半角文字に変換します。<br>
 	 * 前後スペース（全角、半角）削除
 	 *
-	 * @param value
-	 * @return
+	 * @param value 変換したい文字
+	 * @return 変換後の文字
 	 */
 	public static String convertHankaku(String value) {
 		if (value.length() != 0) {
@@ -958,8 +938,8 @@ public class StringConverter {
 	 * 全角フィールドの文字列に半角文字が存在した場合に全角文字に変換します。<br>
 	 * 前後スペース（全角、半角）削除
 	 *
-	 * @param value
-	 * @return
+	 * @param value 変換したい文字
+	 * @return 変換後の文字
 	 */
 	public static String convertZenkaku(String value) {
 		if (value.length() != 0) {
@@ -990,8 +970,8 @@ public class StringConverter {
 	 * 9.半角英大文字を全角英大文字に変換します。<br>
 	 * 10.半角記号を全角記号に変換します。<br>
 	 *
-	 * @param value
-	 * @return
+	 * @param value 変換したい文字
+	 * @return 変換後の文字
 	 */
 	public static String convertFurigana(String value) {
 		if (value.length() != 0) {
@@ -1025,8 +1005,8 @@ public class StringConverter {
 	 * 8.全角英大文字を半角英大文字に変換します。<br>
 	 * 9.全角記号を半角記号に変換します。<br>
 	 *
-	 * @param value
-	 * @return
+	 * @param value 変換したい文字
+	 * @return 変換後の文字
 	 */
 	public static String convertFuriganaMobile(String value) {
 		if (value.length() != 0) {
@@ -1047,11 +1027,11 @@ public class StringConverter {
 
 
     /**
-     * 入力文字列に半角文字が存在した場合、全角に変換して戻す<br/>
+     * 入力文字列に半角文字が存在した場合、全角に変換して戻す。
      * 前後スペースは全角半角共にトリミング
      *
-     * @param val
-     * @return
+	 * @param val 変換したい文字
+	 * @return 変換後の文字
      */
     public static String toZenkaku(String val) {
 
@@ -1070,11 +1050,11 @@ public class StringConverter {
     }
 
     /**
-     * 入力文字列に全角文字が存在した場合、半角に変換して戻す<br/>
+     * 入力文字列に全角文字が存在した場合、半角に変換して戻す。
      * 前後スペースは全角半角共にトリミング
      *
-     * @param val
-     * @return
+	 * @param val 変換したい文字
+	 * @return 変換後の文字
      */
     public static String toHankaku(String val) {
 

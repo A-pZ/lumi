@@ -3,3 +3,7 @@
 lumi-core/.classpath
 lumi-core/.settings/org.eclipse.jdt.core.prefs
 lumi-core/.settings/org.eclipse.wst.common.project.facet.core.xml
+*.classpath
+*.classpath
+lumi-blank/.settings/org.eclipse.wst.common.component
+lumi-core/.classpath
